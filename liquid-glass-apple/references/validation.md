@@ -22,6 +22,8 @@ Ao aumentar uma cápsula, a faixa refratada também avança para dentro proporci
 
 Verifique material sólido nas preferências de transparência reduzida, contraste aumentado e cores forçadas. Não invente uma tela de configurações num produto só para expor os controles de laboratório.
 
+Para otimizações, compare capturas da implementação anterior e da nova no mesmo navegador, viewport, escala, fonte e estado; aguarde a decodificação das imagens e atualização da lente. Confira texto/fotos/fundo plano em claro/escuro, superfícies de tamanhos diferentes, alteração da fonte, resize, menus e slider pressionado. Meça cálculos de mapas, leituras de estilo e trabalho de renderização separadamente: menos chamadas de JS não equivale a uma promessa de FPS para todos os aparelhos.
+
 ## Recursos desta skill
 
 - `../assets/reference/article-dark.png`: referência aprovada no tema escuro, sem cores.

@@ -1,6 +1,6 @@
 {
   "name": "liquid-glass-skill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Material-focused Liquid Glass skill, portable optics and reproducible browser examples",
   "scripts": {
@@ -8,6 +8,7 @@
     "screenshots": "node scripts/capture.mjs",
     "verify:package": "node scripts/verify-package.mjs",
     "verify:lens": "node scripts/verify-lens.mjs",
+    "verify:performance": "node scripts/verify-performance.mjs",
     "screenshots:reference": "node scripts/capture-reference.mjs",
     "screenshots:readme": "node scripts/capture-readme.mjs",
     "package:skill": "python scripts/package-skill.py"

@@ -4,6 +4,11 @@
 const NS = 'http://www.w3.org/2000/svg';
 let sequence = 0;
 const photoSamples = new WeakMap();
+// Reuse identical, immutable maps across surfaces and resize round trips.
+// Bound the number of entries and their serialized payload; never downsample.
+const opticalMaps = new Map();
+const mapCacheEntries = 16, mapCachePayload = 4 * 1024 * 1024;
+let mapCacheSize = 0;
 const svgNode = (tag, attributes = {}) => {
   const node = document.createElementNS(NS, tag);
   Object.entries(attributes).forEach(([name, value]) => node.setAttribute(name, String(value)));
@@ -173,6 +178,25 @@ function makeMap(width, height, radius, amount, edgeWidth, edgeProfile) {
   return { url: canvas.toDataURL('image/png'), reflection: reflectionCanvas.toDataURL('image/png'), scale };
 }
 
+function opticalMap(key, width, height, radius, options) {
+  const cached = opticalMaps.get(key);
+  if (cached) {
+    opticalMaps.delete(key); opticalMaps.set(key, cached);
+    return cached;
+  }
+  const map = makeMap(width, height, radius, options.strength, options.edgeWidth, options.edgeProfile);
+  const size = map.url.length + map.reflection.length;
+  if (size <= mapCachePayload) {
+    while (opticalMaps.size >= mapCacheEntries || mapCacheSize + size > mapCachePayload) {
+      const oldest = opticalMaps.keys().next().value, entry = opticalMaps.get(oldest);
+      mapCacheSize -= entry.url.length + entry.reflection.length;
+      opticalMaps.delete(oldest);
+    }
+    opticalMaps.set(key, map); mapCacheSize += size;
+  }
+  return map;
+}
+
 /**
  * Attach the approved lens to surfaces above a controlled, presentational scene.
  * Call on mount. `source` holds background text/images, not interactive UI.
@@ -223,11 +247,9 @@ export function createGlassScene({ stage, source, themeRoot = stage.closest('[da
     return { node, options, windowNode, scene, filter, map, reflection, reflectionAlpha, displacement, rimTone, centerTone, geometry: '', dirty: true };
   }
 
-  function syncAppearance(record) {
-    const style = getComputedStyle(stage), theme = getComputedStyle(themeRoot);
-    const value = theme.getPropertyValue('--glass-neutral').trim();
+  function syncAppearance(record, context) {
+    const {style, value, light} = context;
     const hex = /^#([\da-f]{6})$/i.exec(value)?.[1] || (themeRoot.dataset.theme === 'dark' ? '1b1b1d' : 'e8e8e9');
-    const light = themeRoot.dataset.theme !== 'dark';
     const photo = adaptToPhotos ? photoBackdrop(record.node,source) : {coverage:0};
     const coverage = photo.coverage;
     const appearance = `${themeRoot.dataset.theme}:${value}:${style.backgroundColor}:${coverage.toFixed(2)}:${photo.color?.map(channel=>Math.round(channel*255)).join(',')}`;
@@ -277,40 +299,49 @@ export function createGlassScene({ stage, source, themeRoot = stage.closest('[da
     });
   }
 
-  function syncScene(record) {
-    const style = getComputedStyle(stage), light = themeRoot.dataset.theme !== 'dark';
-    Object.assign(record.scene.style, {
-      width: `${stage.clientWidth}px`, height: `${stage.clientHeight}px`,
-      backgroundColor: style.backgroundColor, backgroundImage: style.backgroundImage,
-      backgroundSize: style.backgroundSize, backgroundPosition: style.backgroundPosition,
-      backgroundRepeat: style.backgroundRepeat
-    });
+  function syncScene(record, context) {
+    const {light} = context;
+    if (!context.variables) {
+      const style = context.computedStage;
+      context.variables = [...style].filter(name => name.startsWith('--')).map(name => [name, style.getPropertyValue(name)]);
+      context.sceneStyle = {
+        width: `${stage.clientWidth}px`, height: `${stage.clientHeight}px`,
+        backgroundColor: style.backgroundColor, backgroundImage: style.backgroundImage,
+        backgroundSize: style.backgroundSize, backgroundPosition: style.backgroundPosition,
+        backgroundRepeat: style.backgroundRepeat
+      };
+    }
+    Object.assign(record.scene.style, context.sceneStyle);
     // Preserve scene variables (text size, colors, layout) without assuming
     // names belonging to this demo or to a particular framework.
     record.variables?.forEach(name => record.scene.style.removeProperty(name));
-    record.variables = [...style].filter(name => name.startsWith('--'));
-    record.variables.forEach(name => record.scene.style.setProperty(name, style.getPropertyValue(name)));
+    record.variables = context.variables.map(([name]) => name);
+    context.variables.forEach(([name, value]) => record.scene.style.setProperty(name, value));
     record.scene.replaceChildren();
     if (renderBackdrop) renderBackdrop(record.scene);
     else {
-      const copy = source.cloneNode(true);
-      if (light) {
-        const originals = [source, ...source.querySelectorAll('*')];
-        const elements = [copy, ...copy.querySelectorAll('*')];
-        originals.forEach((original, index) => {
+      // Read the live source once per paint, then keep independent copies.
+      // No extra clone is needed for a scene with only one active surface.
+      if (!context.colors) {
+        context.colors = [];
+        if (light) [source, ...source.querySelectorAll('*')].forEach((original, index) => {
           if (![...original.childNodes].some(node => node.nodeType === 3 && node.textContent.trim())) return;
-          // Only glyph color changes. Images, their containers and the actual
-          // page stay untouched; lowering a parent opacity would wash out both.
-          elements[index].style.color = `color-mix(in srgb, ${getComputedStyle(original).color} 52%, transparent)`;
+          context.colors.push([index, `color-mix(in srgb, ${getComputedStyle(original).color} 52%, transparent)`]);
         });
+        const originals = [...(source.matches('img') ? [source] : []), ...source.querySelectorAll('img')];
+        context.imageFilters = originals.map(image => getComputedStyle(image).filter);
+      }
+      const copy = source.cloneNode(true);
+      if (context.colors.length) {
+        const elements = [copy, ...copy.querySelectorAll('*')];
+        context.colors.forEach(([index, color]) => {elements[index].style.color = color;});
       }
       copy.removeAttribute('id'); copy.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
       // Photographs get a gentle diffusion before refraction. Text still uses
       // the sharp reading center; this does not raise blur across the scene.
-      const originals = [...(source.matches('img') ? [source] : []), ...source.querySelectorAll('img')];
       const pictures = [...(copy.matches('img') ? [copy] : []), ...copy.querySelectorAll('img')];
       pictures.forEach((picture, index) => {
-        const originalFilter = getComputedStyle(originals[index]).filter;
+        const originalFilter = context.imageFilters[index];
         const diffusion = adaptToPhotos ? clamp(record.node.offsetHeight * (light ? .035 : .04),1.5,6) : light ? .9 : 1.4;
         picture.style.filter = `${originalFilter === 'none' ? '' : originalFilter} blur(${diffusion}px)`.trim();
       });
@@ -324,16 +355,24 @@ export function createGlassScene({ stage, source, themeRoot = stage.closest('[da
     if (disposed) return;
     const accessible = preferences.some(query => query.matches) || themeRoot.dataset.glassFallback === 'true' || themeRoot.dataset.lgFallback === 'true';
     const supported = CSS.supports('filter', 'url("#glass-lens")');
-    let active = 0;
+    let active = 0, context;
     for (const record of records.values()) {
       const { node } = record;
       const visible = node.isConnected && node.offsetWidth > 0 && node.offsetHeight > 0 && (!node.checkVisibility || node.checkVisibility());
       if (accessible || !supported || !record.options.enabled || !visible) { node.removeAttribute('data-glass-lens'); clearAppearance(record); continue; }
       const width = node.offsetWidth, height = node.offsetHeight;
       const radius = Math.min(parseFloat(getComputedStyle(node).borderTopLeftRadius) || 0, width / 2, height / 2);
+      if (!context) {
+        const style = getComputedStyle(stage), theme = getComputedStyle(themeRoot);
+        context = {
+          computedStage: style, style: {backgroundColor: style.backgroundColor},
+          value: theme.getPropertyValue('--glass-neutral').trim(), light: themeRoot.dataset.theme !== 'dark',
+          rect: stage.getBoundingClientRect(), left: stage.clientLeft, top: stage.clientTop
+        };
+      }
       const geometry = `${width}:${height}:${radius}:${record.options.strength}:${record.options.edgeWidth}:${record.options.edgeProfile}`;
       if (record.geometry !== geometry) {
-        const map = makeMap(width, height, radius, record.options.strength, record.options.edgeWidth, record.options.edgeProfile);
+        const map = opticalMap(geometry, width, height, radius, record.options);
         Object.entries({ x: -48, y: -48, width: width + 96, height: height + 96 }).forEach(([name, value]) => record.filter.setAttribute(name, value));
         record.map.setAttribute('width', width + 96); record.map.setAttribute('height', height + 96);
         record.map.setAttribute('href', map.url); record.displacement.setAttribute('scale', map.scale);
@@ -341,11 +380,11 @@ export function createGlassScene({ stage, source, themeRoot = stage.closest('[da
         record.reflection.setAttribute('href', map.reflection);
         record.geometry = geometry;
       }
-      const stageRect = stage.getBoundingClientRect(), rect = node.getBoundingClientRect();
-      record.scene.style.left = `${stageRect.left + stage.clientLeft - rect.left}px`;
-      record.scene.style.top = `${stageRect.top + stage.clientTop - rect.top}px`;
-      syncAppearance(record);
-      if (record.dirty) syncScene(record);
+      const rect = node.getBoundingClientRect();
+      record.scene.style.left = `${context.rect.left + context.left - rect.left}px`;
+      record.scene.style.top = `${context.rect.top + context.top - rect.top}px`;
+      syncAppearance(record, context);
+      if (record.dirty) syncScene(record, context);
       node.dataset.glassLens = 'edge'; active++;
     }
     onStatus({ active, accessible, supported });

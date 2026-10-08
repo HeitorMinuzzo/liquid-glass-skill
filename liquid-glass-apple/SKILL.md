@@ -3,7 +3,7 @@ name: liquid-glass-apple
 description: >-
   Aplicar a receita Liquid Glass a componentes de qualquer projeto web, criando novas superfícies ou adaptando as existentes. Use quando Liquid Glass inspirado na Apple for solicitado. Preserve a arquitetura, o framework, a identidade visual e as interações do projeto, com refração nas bordas, transparência calibrada, reflexos e conteúdo legível.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Liquid Glass Apple · V1
@@ -57,6 +57,8 @@ As referências visuais servem para conferir refração, transparência, borda e
 ## Movimento e ciclo de vida
 
 Quando houver movimento, use a biblioteca e o ritmo do projeto. A lente acompanha a geometria real durante deslocamento e resize; o conteúdo continua nítido e interativo. Leia [movimento](references/motion.md) para sincronização, estados de pressão e preferências de acessibilidade. Adicione interações de arraste somente quando fizerem parte da função pedida.
+
+Otimize trabalho repetido, preservando a receita visual: reutilize mapas idênticos e leituras do cenário, mantenha caches limitados e atualize a fonte quando ela mudar. Não reduza resolução, frequência de atualização ou intensidade do efeito para melhorar desempenho sem um pedido explícito. Compare capturas antes/depois e verifique interação e alinhamento; suporte a CSS não comprova fluidez no dispositivo.
 
 ## Recursos e conclusão
 

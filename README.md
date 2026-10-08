@@ -8,7 +8,7 @@ Uma skill de material visual, reconstruída a partir do efeito aprovado neste pr
 
 A visual material skill rebuilt around the effect refined and approved in this project.
 
-**[Live demo / Demonstração](https://HeitorMinuzzo.github.io/liquid-glass-skill/) · [Download V1 ZIP](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.0/liquid-glass-skill-v1.0.0.zip) · [Releases](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases)**
+**[Live demo / Demonstração](https://HeitorMinuzzo.github.io/liquid-glass-skill/) · [Download V1 ZIP](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.1/liquid-glass-skill-v1.0.1.zip) · [Releases](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases)**
 
 Repository: `liquid-glass-skill` · Skill: `$liquid-glass-apple` · Author: **Heitor Minuzzo**
 
@@ -58,7 +58,7 @@ The slider uses the same lens on its track and thumb. Holding it slightly enlarg
 
 Aplica um material inspirado no Liquid Glass da Apple aos componentes necessários ao produto, preservando seu framework, layout, identidade e interações. Os exemplos ajudam a observar o vidro; não determinam quais componentes o agente deve criar.
 
-**V1 · 1.0.0:** a [skill](liquid-glass-apple/SKILL.md) orienta a aplicação da receita Liquid Glass em qualquer projeto web, adaptando a integração ao framework, à arquitetura e aos componentes necessários. O núcleo portátil implementa a óptica calibrada. O [guia de componentes e estados](liquid-glass-apple/references/components.md) cobre menus translúcidos, seleções com acabamento em vidro e foco sem o retângulo nativo, preservando navegação por teclado.
+**V1 · 1.0.1:** a [skill](liquid-glass-apple/SKILL.md) orienta a aplicação da receita Liquid Glass em qualquer projeto web, adaptando a integração ao framework, à arquitetura e aos componentes necessários. O núcleo portátil implementa a óptica calibrada. O [guia de componentes e estados](liquid-glass-apple/references/components.md) cobre menus translúcidos, seleções com acabamento em vidro e foco sem o retângulo nativo, preservando navegação por teclado.
 
 - **Refração e espelhamento no contorno:** texto se alonga e se inverte perto das bordas, incluindo as laterais e os cantos.
 - **Texto de fundo atenuado apenas sob o vidro:** glifos perdem contraste localmente; fotografias preservam suas cores e o conteúdo fora da superfície mantém a aparência original.
@@ -75,10 +75,10 @@ A receita principal vem do playground do **SKILLS**. A coleção reúne dez exem
 
 ```text
 Use $skill-installer para instalar a skill deste endereço:
-https://github.com/HeitorMinuzzo/liquid-glass-skill/tree/v1.0.0/liquid-glass-apple
+https://github.com/HeitorMinuzzo/liquid-glass-skill/tree/v1.0.1/liquid-glass-apple
 ```
 
-**Download manual:** baixe o [ZIP da V1](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.0/liquid-glass-skill-v1.0.0.zip), extraia-o e copie a pasta completa `liquid-glass-apple` para o diretório de skills do seu agente. O ZIP contém apenas a skill, com seu núcleo, exemplo portátil, referências e licença; instalar a skill não requer Node.js nem Python.
+**Download manual:** baixe o [ZIP da V1](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.1/liquid-glass-skill-v1.0.1.zip), extraia-o e copie a pasta completa `liquid-glass-apple` para o diretório de skills do seu agente. O ZIP contém apenas a skill, com seu núcleo, exemplo portátil, referências e licença; instalar a skill não requer Node.js nem Python.
 
 Na descoberta local atual do Codex, a pasta pessoal é `~/.agents/skills/`; a pasta de um projeto é `.agents/skills/`. Se sua instalação usa outra pasta configurada, como `~/.codex/skills/`, use esse destino. Consulte a [documentação oficial de skills](https://learn.chatgpt.com/docs/build-skills).
 
@@ -146,6 +146,8 @@ Use camadas separadas para `.glass-material`, `.glass-content` e `.glass-rim` de
 
 A lente não captura um DOM arbitrário: sincroniza um cenário conhecido. Para outro renderer, adapte a fonte de pixels; o fallback CSS mantém o uso, mas não reproduz o espelhamento. A implementação foi verificada em Chromium/Edge; Safari/iPhone precisa de avaliação no dispositivo. É uma aproximação web, sem promessa de paridade com o renderer nativo da Apple.
 
+**1.0.1 · Otimização com o mesmo visual:** mapas idênticos são reutilizados num cache limitado; as superfícies compartilham leituras do cenário e preparação do fundo em cada atualização. Resolução, refração, blur, transparência e reflexos permanecem iguais. A comparação antes/depois verificou pixels idênticos em 18 cenários no Edge. Num teste com oito superfícies iguais e 64 parágrafos, os cálculos iniciais de mapas passaram de 8 para 1 e as leituras de estilos do texto, de 512 para 64. São medidas de trabalho do JS, não uma promessa de FPS em qualquer aparelho.
+
 ### Verificar e regenerar capturas
 
 ```sh
@@ -153,6 +155,7 @@ npm ci
 npx playwright install chromium
 npm run verify:package
 npm run verify:lens
+npm run verify:performance
 npm run screenshots
 npm run screenshots:reference
 npm run screenshots:readme
@@ -162,9 +165,11 @@ npm run screenshots:readme
 
 `screenshots:readme` reproduz as quatro imagens de apresentação usando o mesmo núcleo e os controles da demonstração. A composição para captura fica em `scripts/fixtures/readme.*`, fora do pacote da skill; não modifica a receita ou a interface do site.
 
+`verify:performance` mede o reaproveitamento de mapas e leituras da fonte, além de verificar atualizações e desmontagem. Para comparar pixels com uma versão anterior do núcleo, use `npm run verify:performance -- --baseline caminho/para/liquid-glass-anterior.js`. As capturas e o relatório ficam em `.artifacts/performance/`, fora do Git.
+
 ### Empacotar uma versão
 
-Com Python 3 disponível, `npm run package:skill` gera `dist/liquid-glass-skill-v1.0.0.zip` e `dist/SHA256SUMS.txt`. O script verifica o inventário e o conteúdo de cada arquivo do pacote. A pasta `dist/` fica fora do Git; os arquivos são distribuídos como assets da release. A captura principal escolhida pelo autor é preservada na regeneração das referências.
+Com Python 3 disponível, `npm run package:skill` gera `dist/liquid-glass-skill-v1.0.1.zip` e `dist/SHA256SUMS.txt`. O script verifica o inventário e o conteúdo de cada arquivo do pacote. A pasta `dist/` fica fora do Git; os arquivos são distribuídos como assets da release. A captura principal escolhida pelo autor é preservada na regeneração das referências.
 
 ## English
 
@@ -172,7 +177,7 @@ Com Python 3 disponível, `npm run package:skill` gera `dist/liquid-glass-skill-
 
 Applies an Apple Liquid Glass inspired material to the components your product needs, preserving its framework, layout, identity, and interactions. The examples demonstrate the material; they do not dictate the components an agent must build.
 
-**V1 · 1.0.0:** the [skill](liquid-glass-apple/SKILL.md) guides application of the Liquid Glass recipe to any web project, adapting integration to its framework, architecture, and required components. The portable core implements the calibrated optics. The [component and state guide](liquid-glass-apple/references/components.md) covers translucent menus, glass selection finishes, and focus without the native rectangle while preserving keyboard navigation.
+**V1 · 1.0.1:** the [skill](liquid-glass-apple/SKILL.md) guides application of the Liquid Glass recipe to any web project, adapting integration to its framework, architecture, and required components. The portable core implements the calibrated optics. The [component and state guide](liquid-glass-apple/references/components.md) covers translucent menus, glass selection finishes, and focus without the native rectangle while preserving keyboard navigation.
 
 - **Refraction and a mirrored rim:** background text stretches and reverses near the contour, including the sides and corners.
 - **Local text contrast reduction:** background glyphs lose contrast beneath the glass; photographs keep their colors and uncovered content keeps its original appearance.
@@ -189,10 +194,10 @@ The primary recipe comes from the **SKILLS** playground. The collection includes
 
 ```text
 Use $skill-installer to install the skill at:
-https://github.com/HeitorMinuzzo/liquid-glass-skill/tree/v1.0.0/liquid-glass-apple
+https://github.com/HeitorMinuzzo/liquid-glass-skill/tree/v1.0.1/liquid-glass-apple
 ```
 
-**Manual download:** download the [V1 ZIP](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.0/liquid-glass-skill-v1.0.0.zip), extract it, and copy the complete `liquid-glass-apple` folder into your agent's skills directory. The ZIP contains only the skill, including its core, portable example, references, and license; installing the skill does not require Node.js or Python.
+**Manual download:** download the [V1 ZIP](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.1/liquid-glass-skill-v1.0.1.zip), extract it, and copy the complete `liquid-glass-apple` folder into your agent's skills directory. The ZIP contains only the skill, including its core, portable example, references, and license; installing the skill does not require Node.js or Python.
 
 Current Codex local discovery uses `~/.agents/skills/` for personal skills and `.agents/skills/` for a project. If your installation uses another configured location, such as `~/.codex/skills/`, use that destination. See the [official skills documentation](https://learn.chatgpt.com/docs/build-skills).
 
@@ -260,6 +265,8 @@ Place separate `.glass-material`, `.glass-content`, and `.glass-rim` layers insi
 
 The lens synchronizes a known scene rather than capturing arbitrary DOM content. Adapt the pixel source for other renderers; the CSS fallback preserves usability but does not reproduce the mirrored rim. Rendering was verified in Chromium/Edge; Safari/iPhone requires device testing. This is a web approximation, without a claim of parity with Apple's native renderer.
 
+**1.0.1 · Same visuals, less repeated work:** identical maps are reused in a bounded cache; surfaces share scene reads and background preparation during each update. Resolution, refraction, blur, transparency, and reflections remain unchanged. Before/after comparisons verified identical pixels in 18 Edge scenarios. In a workload with eight identical surfaces and 64 paragraphs, initial map calculations went from 8 to 1 and text style reads from 512 to 64. These measure JavaScript work, not guaranteed FPS across devices.
+
 ### Verify and regenerate screenshots
 
 ```sh
@@ -267,6 +274,7 @@ npm ci
 npx playwright install chromium
 npm run verify:package
 npm run verify:lens
+npm run verify:performance
 npm run screenshots
 npm run screenshots:reference
 npm run screenshots:readme
@@ -276,9 +284,11 @@ npm run screenshots:readme
 
 `screenshots:readme` reproduces the four presentation images using the same core and controls as the demo. The capture composition lives in `scripts/fixtures/readme.*`, outside the skill package; it changes neither the recipe nor the site's interface.
 
+`verify:performance` measures map/source-read reuse and checks live updates and cleanup. To compare pixels against an earlier core, run `npm run verify:performance -- --baseline path/to/previous-liquid-glass.js`. Captures and the report are saved in `.artifacts/performance/`, outside Git.
+
 ### Package a release
 
-With Python 3 available, `npm run package:skill` creates `dist/liquid-glass-skill-v1.0.0.zip` and `dist/SHA256SUMS.txt`. The script checks the inventory and contents of every packaged file. `dist/` stays outside Git; these files are distributed as release assets. Regenerating the references preserves the author's selected photo capture.
+With Python 3 available, `npm run package:skill` creates `dist/liquid-glass-skill-v1.0.1.zip` and `dist/SHA256SUMS.txt`. The script checks the inventory and contents of every packaged file. `dist/` stays outside Git; these files are distributed as release assets. Regenerating the references preserves the author's selected photo capture.
 
 ## Estrutura / Structure
 

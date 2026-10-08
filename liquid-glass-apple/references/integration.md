@@ -109,6 +109,14 @@ React: crie o cenário num effect com refs, destrua no cleanup e preserve as pri
 
 Mudanças da fonte, tamanho e aparência são observadas. Movimentos por drag, transform ou animação podem não alterar o tamanho observado: chame `scene.refresh()` após atualizar a posição. Recalcule o mapa só quando geometria/intensidade mudar. Leia [motion.md](motion.md) quando houver animações.
 
+## Desempenho sem alterar o material
+
+O núcleo reutiliza mapas ópticos de geometria e parâmetros **exatamente iguais**, inclusive entre superfícies e ao retornar a um tamanho recente. O cache guarda no máximo 16 entradas e 4 MiB de URLs serializadas; um mapa maior é calculado normalmente, sem reduzir sua resolução. Evicção afeta somente o reaproveitamento futuro, não os filtros já montados.
+
+Em cada atualização, o cenário compartilha as leituras de aparência e a preparação da fonte entre suas superfícies. Essa preparação vale somente para aquele frame: alterações de texto, tipografia, tema e imagens continuam invalidando o fundo. Cada superfície mantém filtro, recorte, posição e difusão fotográfica próprios. O renderer customizado continua sendo chamado separadamente para cada superfície que precisa atualizar o fundo.
+
+Mova superfícies com `scene.refresh()`; use `scene.refresh(true)` quando um renderer customizado mudar seu conteúdo. Evite reconstruir o cenário para mudar posição ou valor. Preserve a qualidade e o ritmo de atualização aprovados; meça o trabalho de JS e a renderização no dispositivo de destino antes de prometer ganho de fluidez. O fallback de acessibilidade/compatibilidade permanece independente dessas otimizações.
+
 ## Fallback e navegador
 
 A imagem sincronizada usa `filter: url(...)`, não `backdrop-filter: url(...)`. Isso evita depender da refração SVG direta sobre o backdrop, que não é portável entre navegadores. `CSS.supports` é uma verificação inicial de sintaxe; não prova que a lente renderizou corretamente. Confira os pixels no navegador de destino, especialmente no Safari/iPhone.
