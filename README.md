@@ -4,13 +4,13 @@
 
 **Refracted edges. A quiet center. Your product's components.**
 
-Uma skill de material visual, reconstruída a partir do efeito aprovado neste projeto.
+Liquid Glass Skill é uma skill para agentes de programação com IA criarem ou adaptarem componentes de qualquer projeto web com o material inspirado no Liquid Glass da Apple. Inclui refração, transparência e reflexos calibrados, instruções de instalação, exemplos reutilizáveis e um playground interativo.
 
-A visual material skill rebuilt around the effect refined and approved in this project.
+Liquid Glass Skill helps AI coding agents create or adapt components in any web project with Apple-inspired Liquid Glass. It includes calibrated refraction, transparency and reflections, installation instructions, reusable examples and an interactive playground.
 
 **[Live demo / Demonstração](https://HeitorMinuzzo.github.io/liquid-glass-skill/) · [Download V1 ZIP](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.1/liquid-glass-skill-v1.0.1.zip) · [Releases](https://github.com/HeitorMinuzzo/liquid-glass-skill/releases)**
 
-Repository: `liquid-glass-skill` · Skill: `$liquid-glass-apple` · Author: **Heitor Minuzzo**
+Repository: [liquid-glass-skill on GitHub](https://github.com/HeitorMinuzzo/liquid-glass-skill) · Skill: `$liquid-glass-apple` · Author: **Heitor Minuzzo**
 
 [Português](#português) · [English](#english) · [Início / Home](docs/showcase/index.html?view=home) · [Playground](docs/showcase/index.html?view=playground) · [Exemplo portátil / Portable example](liquid-glass-apple/assets/example/index.html) · [SKILL.md](liquid-glass-apple/SKILL.md)
 

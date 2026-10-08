@@ -81,7 +81,7 @@ $('#playground-page').hidden = view !== 'playground';
 if (view === 'home') $('#home').append($('#playground'));
 setTheme(params.get('theme') === 'dark' ? 'dark' : 'light');
 setBackdrop(presets.includes(params.get('backdrop')) ? params.get('backdrop') : 'none');
-document.title = `Liquid Glass Apple — ${{home:'Home', gallery:'Component examples', playground:'Playground'}[view]}`;
+document.title = `Liquid Glass Skill — ${{home:'Components and Playground', gallery:'Component Examples', playground:'Interactive Playground'}[view]}`;
 $$('[data-theme-choice]').forEach(button => button.addEventListener('click', () => setTheme(button.dataset.themeChoice)));
 const backdropTrigger = $('#backdrop'), backdropMenu = $('#backdrop-menu-scene'), backdropChoices = $$('[data-backdrop-choice]');
 function positionBackdropMenu() {
