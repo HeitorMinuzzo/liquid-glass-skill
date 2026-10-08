@@ -72,6 +72,7 @@ h1, h2, h3, p { margin: 0; }
 .home-component :is(.glass-search, .lg-segmented) { width: min(324px, 100%); }
 .home-example figcaption { margin-top: 24px; color: var(--glass-muted); text-align: center; font-size: 11px; line-height: 1.6; }
 .home-examples-note { margin-top: 18px; text-align: center; color: var(--glass-muted); font-size: 10px; line-height: 1.6; }
+.home-examples-note a { text-decoration: underline; text-underline-offset: 3px; }
 .optical-stage { position: relative; isolation: isolate; overflow: hidden; }
 .specimen-source { position: absolute; inset: 0; }
 .component-shelf { border-radius: 20px; }

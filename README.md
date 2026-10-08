@@ -1,5 +1,7 @@
 # Liquid Glass Skill
 
+**Web / Front-end · HTML, CSS, JavaScript & SVG · Framework-agnostic core**
+
 **Refração nas bordas. Centro nítido. Componentes do seu produto.**
 
 **Refracted edges. A quiet center. Your product's components.**
@@ -12,7 +14,7 @@ Liquid Glass Skill helps AI coding agents create or adapt components in any web 
 
 Repository: [liquid-glass-skill on GitHub](https://github.com/HeitorMinuzzo/liquid-glass-skill) · Skill: `$liquid-glass-apple` · Author: **Heitor Minuzzo**
 
-[Português](#português) · [English](#english) · [Início / Home](docs/showcase/index.html?view=home) · [Playground](docs/showcase/index.html?view=playground) · [Exemplo portátil / Portable example](liquid-glass-apple/assets/example/index.html) · [SKILL.md](liquid-glass-apple/SKILL.md)
+[Português](#português) · [English](#english) · [Guia Web / Web guide](https://heitorminuzzo.github.io/liquid-glass-skill/docs/liquid-glass-web-skill.html) · [Início / Home](docs/showcase/index.html?view=home) · [Playground](docs/showcase/index.html?view=playground) · [Exemplo portátil / Portable example](liquid-glass-apple/assets/example/index.html) · [SKILL.md](liquid-glass-apple/SKILL.md)
 
 ## Com e sem cores / With and without colors
 
@@ -24,6 +26,25 @@ One recipe, four appearances. Search crosses two lines of text to reveal the ref
 | :---: | :---: |
 | [![Liquid Glass claro sem cores: Search sobre texto e componentes em fundo neutro / Light neutral glass](docs/images/readme-neutral-light.png)](docs/images/readme-neutral-light.png) | [![Liquid Glass claro com Aurora: a mesma refração e transparência / Light colored glass](docs/images/readme-color-light.png)](docs/images/readme-color-light.png) |
 | [![Liquid Glass escuro sem cores: Search, Switcher, Slider e ações / Dark neutral glass](docs/images/readme-neutral-dark.png)](docs/images/readme-neutral-dark.png) | [![Liquid Glass escuro com Aurora: a mesma receita em fundo colorido / Dark colored glass](docs/images/readme-color-dark.png)](docs/images/readme-color-dark.png) |
+
+## Liquid Glass para Web / Liquid Glass for the web
+
+**HeitorMinuzzo/liquid-glass-skill** é uma skill de Liquid Glass para componentes web. Serve para criar novas superfícies ou converter componentes existentes, preservando a arquitetura e as interações do produto. A implementação usa CSS, JavaScript e filtros SVG; o núcleo não tem dependências de runtime.
+
+**HeitorMinuzzo/liquid-glass-skill** is a Liquid Glass skill for web UI components. Use it to create glass surfaces or convert existing components while preserving the product's architecture and interactions. The implementation uses CSS, JavaScript and SVG filters, with no runtime dependencies in the core.
+
+| Aspecto / Area | Implementação / Implementation |
+| --- | --- |
+| Material | Refração calculada nas bordas e ombros, reflexão contínua, atenuação local do texto e adaptação fotográfica. / Calculated edge and shoulder refraction, continuous reflection, local text attenuation and photo adaptation. |
+| Frameworks | Núcleo independente de framework; orientação de montagem/desmontagem para React, Vue e Svelte. A integração é adaptada ao projeto, sem adapters prontos específicos. / Framework-independent core with React, Vue and Svelte lifecycle guidance; integration is adapted to the project, without prebuilt framework adapters. |
+| Aparência / Appearance | Claro e escuro, com fundo neutro ou cores opcionais. / Light and dark, with neutral backgrounds or optional colors. |
+| Exemplos / Examples | Search, Switcher, Slider, menus, botões e outros controles, incluindo foco, seleção e arraste. / Search, Switcher, Slider, menus, buttons and other controls, including focus, selection and dragging. |
+| Agentes / Agents | Pacote `SKILL.md` validado e instalado no Codex. Outros agentes precisam de configuração e verificação próprias. / `SKILL.md` package validated and installed in Codex; other agents require their own setup and verification. |
+| Navegadores / Browsers | Receita verificada no Chromium/Edge; Safari/iPhone precisa de teste visual no dispositivo. O fallback preserva usabilidade, com aparência simplificada. / Recipe verified in Chromium/Edge; Safari/iPhone needs on-device visual testing. The fallback preserves usability with a simplified appearance. |
+
+As capturas acima são renderizações reais do navegador. O [guia Web](https://heitorminuzzo.github.io/liquid-glass-skill/docs/liquid-glass-web-skill.html) explica escopo, instalação e limites da fonte apresentacional. Esta implementação atende interfaces no navegador; projetos SwiftUI ou React Native precisam de uma implementação para seu ambiente nativo.
+
+The captures above are actual browser renders. The [web guide](https://heitorminuzzo.github.io/liquid-glass-skill/docs/liquid-glass-web-skill.html#english) explains scope, installation and presentational-source limitations. This implementation targets browser interfaces; SwiftUI or React Native projects need an implementation for their native environment.
 
 ## Componentes e cenários / Components and backdrops
 

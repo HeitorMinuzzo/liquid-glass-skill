@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liquid Glass Skill para Web — componentes, refração e integração</title>
+  <meta name="description" content="Conheça a Liquid Glass Skill de Heitor Minuzzo: componentes web com refração por SVG, transparência calibrada, exemplos, instalação e integração com frameworks.">
+  <meta name="author" content="Heitor Minuzzo">
+  <link rel="canonical" href="https://heitorminuzzo.github.io/liquid-glass-skill/docs/liquid-glass-web-skill.html">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Liquid Glass Skill para componentes web">
+  <meta property="og:description" content="Uma receita reutilizável de vidro com refração, transparência e reflexos. Guia de escopo, instalação e integração por Heitor Minuzzo.">
+  <meta property="og:url" content="https://heitorminuzzo.github.io/liquid-glass-skill/docs/liquid-glass-web-skill.html">
+  <meta property="og:image" content="https://heitorminuzzo.github.io/liquid-glass-skill/docs/images/readme-neutral-light.png">
+  <meta property="og:image:width" content="2240">
+  <meta property="og:image:height" content="1600">
+  <meta property="og:image:alt" content="Componentes Liquid Glass renderizados no navegador, incluindo Search sobre duas linhas de texto, Switcher, Slider e botões.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../liquid-glass-apple/assets/core/liquid-glass.css">
+  <link rel="stylesheet" href="showcase/showcase.css">
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body data-liquid-glass data-theme="light" data-glass-backdrop="none">
+  <div class="guide-page">
+    <header class="guide-header">
+      <a class="brand" href="showcase/index.html?view=home"><span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>Liquid Glass Skill</a>
+      <nav aria-label="Recursos"><a href="showcase/index.html?view=home#playground">Playground</a><a href="https://github.com/HeitorMinuzzo/liquid-glass-skill">GitHub</a><a href="#english" lang="en">English</a></nav>
+    </header>
+    <main>
+      <article class="guide-article" aria-labelledby="guide-title">
+        <p class="eyebrow">WEB / FRONT-END · SKILL PARA AGENTES DE IA</p>
+        <h1 id="guide-title">Liquid Glass Skill para componentes web</h1>
+        <p class="guide-lead">Uma receita de vidro inspirada na Apple, com refração nas bordas, transparência calibrada e conteúdo legível. Crie novas superfícies ou adapte os componentes do seu projeto.</p>
+        <p class="guide-byline">Criada por <strong>Heitor Minuzzo</strong> · V1, versão 1.0.1 · Projeto aberto sob AGPL-3.0-only</p>
+        <p>O repositório <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill">HeitorMinuzzo/liquid-glass-skill</a> distribui a skill <code>liquid-glass-apple</code>, um núcleo reutilizável em CSS e JavaScript e referências visuais. O efeito usa filtros SVG para deslocar o fundo de acordo com a curvatura da superfície. O destino é uma interface no navegador, com o framework e a identidade visual definidos pelo seu produto.</p>
+        <figure class="guide-figure">
+          <a href="images/readme-neutral-light.png"><img src="images/readme-neutral-light.png" width="2240" height="1600" alt="Search em Liquid Glass atravessando duas linhas de texto, acompanhado por Switcher, Slider e botões em fundo claro neutro." decoding="async"></a>
+          <figcaption>Captura real do navegador em 2×. O mesmo núcleo óptico é usado nos exemplos e no playground.</figcaption>
+        </figure>
+        <section aria-labelledby="material-title">
+          <h2 id="material-title">O material e seus estados</h2>
+          <p>A receita foi ajustada observando o vidro sobre texto, fotografias e fundos uniformes. A refração avança para dentro dos ombros arredondados; a reflexão acompanha a curvatura, incluindo laterais e cantos. O centro usa desfoque de 0,25 px, enquanto texto e ícones do componente permanecem nítidos acima da lente.</p>
+          <p>Texto de fundo perde contraste somente sob o vidro. Fotografias recebem transmissão, cor e difusão próprias. Em fundo neutro, o volume é percebido pela reflexão contínua e pela sombra suave. Claro e escuro compartilham a geometria; cores de fundo são opcionais.</p>
+          <p>A orientação cobre os estados do componente: menus e seleções recebem acabamento em vidro, campos mantêm foco perceptível na borda e sliders preservam teclado e toque. A bolinha do slider cresce de 24 px para 29 px ao ser segurada no exemplo de referência.</p>
+          <p><a href="showcase/index.html?view=gallery">Ver os componentes interativos</a> · <a href="showcase/index.html?view=home&amp;sample=search#playground">Testar sobre texto e fotografias</a></p>
+        </section>
+        <section aria-labelledby="integration-title">
+          <h2 id="integration-title">Integração com o projeto</h2>
+          <p>O núcleo não tem dependências de runtime. A aplicação pode usar HTML, CSS e JavaScript ou um framework de componentes. A skill orienta a conservar layout, props, eventos, tokens e controles existentes.</p>
+          <dl>
+            <dt>HTML, CSS e JavaScript</dt><dd>Use as camadas de material, conteúdo e borda no componente real e inicialize um cenário com <code>createGlassScene</code>.</dd>
+            <dt>React, Vue e Svelte</dt><dd>Integre o cenário ao ciclo de vida do componente: inicialize após a montagem e destrua ao desmontar. O pacote traz orientação para essa adaptação; não distribui wrappers prontos para cada framework.</dd>
+            <dt>Componentes existentes</dt><dd>Aplique o material por uma variante, wrapper, slot, hook ou diretiva conforme a arquitetura. Preserve a semântica e as interações do produto.</dd>
+          </dl>
+          <p>O fundo precisa de uma fonte apresentacional sincronizada, como texto, gradientes e imagens estáticas. O renderer mantém essa fonte alinhada sob cada superfície. Vídeos, canvas, iframes ou uma aplicação inteira exigem outra estratégia de renderização; o núcleo não captura automaticamente qualquer conteúdo do DOM.</p>
+          <p>Na adaptação fotográfica completa, represente as fotos por elementos <code>img</code> com o mesmo recorte do fundo. Imagens locais ou com CORS adequado permitem amostrar sua cor. Consulte o <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill/blob/main/liquid-glass-apple/references/integration.md">guia técnico de integração</a> antes de implementar.</p>
+        </section>
+        <section aria-labelledby="install-title">
+          <h2 id="install-title">Instalar e usar a skill</h2>
+          <ol>
+            <li>Baixe o <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/download/v1.0.1/liquid-glass-skill-v1.0.1.zip">pacote ZIP da versão 1.0.1</a>.</li>
+            <li>Extraia a pasta completa <code>liquid-glass-apple</code>, incluindo <code>SKILL.md</code>, recursos e referências.</li>
+            <li>Coloque essa pasta no diretório de skills configurado para o seu agente e confirme que ele a reconhece.</li>
+            <li>Peça para aplicar a skill aos componentes necessários ao projeto, preservando a arquitetura e as interações.</li>
+          </ol>
+          <pre><code>Use $liquid-glass-apple nos componentes desta aplicação.
+Preserve o framework, o layout e as interações existentes.
+Inclua opções de fundo neutro e com cores.</code></pre>
+          <p>A instalação e o uso local foram verificados no Codex. Outros agentes que leem <code>SKILL.md</code> precisam de sua própria configuração e validação. O <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill#instalar-e-usar">README</a> inclui os caminhos de instalação e o comando para o instalador do Codex. Node.js e Python são usados nas ferramentas de desenvolvimento e verificação do repositório; não são necessários para extrair e instalar o pacote da skill.</p>
+        </section>
+        <section aria-labelledby="validation-title">
+          <h2 id="validation-title">Validação, navegadores e desempenho</h2>
+          <p>A receita foi verificada em Chromium/Edge, nos temas claro e escuro e sobre texto, fotografias e fundos uniformes. Safari e iPhone precisam de verificação visual no dispositivo de destino. O fallback CSS preserva a usabilidade com uma aparência simplificada.</p>
+          <p>Na versão 1.0.1, mapas de geometria idêntica e leituras de estilo são reaproveitados. A comparação com a versão anterior produziu 18 capturas idênticas pixel a pixel no Edge. No cenário de oito superfícies iguais, os cálculos de mapa caíram de oito para um e as leituras de estilo do texto, de 512 para 64. Esses números medem trabalho de JavaScript nesse cenário, não FPS nem desempenho garantido em outros dispositivos.</p>
+          <p>O repositório inclui scripts para verificar óptica, interações, ciclo de vida e o pacote portátil. Consulte o <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill#verificar-e-regenerar-capturas">procedimento de verificação</a>, as <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill/releases/tag/v1.0.1">notas da versão</a> e as <a href="https://github.com/HeitorMinuzzo/liquid-glass-skill/tree/main/liquid-glass-apple/assets/reference">referências visuais</a>.</p>
+        </section>
+        <section id="english" lang="en" aria-labelledby="english-title">
+          <h2 id="english-title">Liquid Glass skill for web UI components</h2>
+          <p><strong>HeitorMinuzzo/liquid-glass-skill</strong>, created by Heitor Minuzzo, is an AI coding agent skill for creating or adapting browser-based components with Apple-inspired Liquid Glass. It uses CSS, JavaScript and SVG displacement filters, with no runtime dependencies in the core.</p>
+          <p>The recipe combines calculated edge and shoulder refraction, continuous reflections, local background-text attenuation and photo adaptation. Light and dark themes share the geometry, with neutral or optional colored backgrounds. Search, Switcher, Slider, menus and buttons demonstrate the same material.</p>
+          <p>The core is framework-independent, with lifecycle guidance for React, Vue and Svelte. Integration requires a synchronized presentational background; it is not automatic capture of arbitrary DOM content. Browser visuals were checked in Chromium/Edge; Safari/iPhone needs on-device validation. The skill package was installed and validated in Codex. Other agents require their own setup and verification. SwiftUI and React Native applications require an implementation for their native environment.</p>
+          <p><a href="https://github.com/HeitorMinuzzo/liquid-glass-skill#english">Read installation and integration instructions in English</a> · <a href="showcase/index.html?view=home">Open the live demo</a></p>
+        </section>
+      </article>
+    </main>
+    <footer class="guide-footer"><span>Autor: Heitor Minuzzo</span><a href="https://github.com/HeitorMinuzzo/liquid-glass-skill">Liquid Glass Skill on GitHub</a></footer>
+  </div>
+</body>
+</html>
