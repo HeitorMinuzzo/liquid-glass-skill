@@ -14,6 +14,19 @@ Repository: `liquid-glass-skill` · Skill: `$liquid-glass-apple` · Author: **He
 
 [Português](#português) · [English](#english) · [Início / Home](docs/showcase/index.html?view=home) · [Playground](docs/showcase/index.html?view=playground) · [Exemplo portátil / Portable example](liquid-glass-apple/assets/example/index.html) · [SKILL.md](liquid-glass-apple/SKILL.md)
 
+## Com e sem cores / With and without colors
+
+Uma receita, quatro aparências. O Search atravessa duas linhas de texto para destacar a refração nas bordas. Capturas reais em **2×**, com o mesmo material e enquadramento. Clique para ver os detalhes.
+
+One recipe, four appearances. Search crosses two lines of text to reveal the refracted edges. Actual **2×** browser captures with identical material and framing. Click to see the details.
+
+| Sem cores / Neutral | Com cores / Colored |
+| :---: | :---: |
+| [![Liquid Glass claro sem cores: Search sobre texto e componentes em fundo neutro / Light neutral glass](docs/images/readme-neutral-light.png)](docs/images/readme-neutral-light.png) | [![Liquid Glass claro com Aurora: a mesma refração e transparência / Light colored glass](docs/images/readme-color-light.png)](docs/images/readme-color-light.png) |
+| [![Liquid Glass escuro sem cores: Search, Switcher, Slider e ações / Dark neutral glass](docs/images/readme-neutral-dark.png)](docs/images/readme-neutral-dark.png) | [![Liquid Glass escuro com Aurora: a mesma receita em fundo colorido / Dark colored glass](docs/images/readme-color-dark.png)](docs/images/readme-color-dark.png) |
+
+## Componentes e cenários / Components and backdrops
+
 ![Coleção simples de componentes Liquid Glass / Minimal Liquid Glass component collection](docs/images/components-detail-light.png)
 
 [Ver a coleção completa / View the full collection](docs/showcase/index.html?view=gallery) · [Tema escuro / Dark collection](docs/images/components-detail-dark.png) · [Comparação óptica 0%/100% / Optical comparison](liquid-glass-apple/assets/reference/article-comparison.png)
@@ -38,17 +51,6 @@ The slider uses the same lens on its track and thumb. Holding it slightly enlarg
 | :---: | :---: |
 | [![Referência aprovada pelo autor sobre fotografia / Author-approved photo reference](liquid-glass-apple/assets/reference/scaled-photo-light.png)](liquid-glass-apple/assets/reference/scaled-photo-light.png) | [![Vidro sobre branco puro / Glass over pure white](docs/images/material-empty-light.png)](docs/images/material-empty-light.png) |
 | [![Vidro sobre fotografia, escuro / Glass over a photo, dark](docs/images/material-photo-dark.png)](docs/images/material-photo-dark.png) | [![Vidro sobre preto puro / Glass over pure black](docs/images/material-empty-dark.png)](docs/images/material-empty-dark.png) |
-
-## Com e sem cores / With and without colors
-
-Capturas reais em **2×**, renderizadas pelo navegador. A geometria e a curva de refração são as mesmas nas quatro variantes. Clique para abrir em resolução completa.
-
-Actual browser screenshots at **2×**. All four variants use the same geometry and refraction curve. Click to view full resolution.
-
-| Sem cores / Neutral | Com cores / Colored |
-| :---: | :---: |
-| [![Exemplo claro sem cores / Light neutral example](liquid-glass-apple/assets/reference/example-neutral-light.png)](liquid-glass-apple/assets/reference/example-neutral-light.png) | [![Exemplo claro com cores / Light colored example](liquid-glass-apple/assets/reference/example-color-light.png)](liquid-glass-apple/assets/reference/example-color-light.png) |
-| [![Exemplo escuro sem cores / Dark neutral example](liquid-glass-apple/assets/reference/example-neutral-dark.png)](liquid-glass-apple/assets/reference/example-neutral-dark.png) | [![Exemplo escuro com cores / Dark colored example](liquid-glass-apple/assets/reference/example-color-dark.png)](liquid-glass-apple/assets/reference/example-color-dark.png) |
 
 ## Português
 
@@ -153,9 +155,12 @@ npm run verify:package
 npm run verify:lens
 npm run screenshots
 npm run screenshots:reference
+npm run screenshots:readme
 ```
 
 `verify:package` testa o exemplo técnico portátil, suas variantes e a desmontagem. `verify:lens` mede refração, contraste, nitidez e composição da máscara em um fixture separado da interface pública. `screenshots` verifica o alinhamento durante a rolagem do artigo, edição de texto/imagens, arraste sobre controles, material fixo, fallback e layouts de 320 a 1440px; também atualiza as capturas do site em 2×. A variável opcional `SHOWCASE_BROWSER` permite usar um executável Chromium/Edge existente.
+
+`screenshots:readme` reproduz as quatro imagens de apresentação usando o mesmo núcleo e os controles da demonstração. A composição para captura fica em `scripts/fixtures/readme.*`, fora do pacote da skill; não modifica a receita ou a interface do site.
 
 ### Empacotar uma versão
 
@@ -264,9 +269,12 @@ npm run verify:package
 npm run verify:lens
 npm run screenshots
 npm run screenshots:reference
+npm run screenshots:readme
 ```
 
 `verify:package` checks the portable technical example, its variants, and cleanup. `verify:lens` measures refraction, contrast, sharpness, and mask composition in a fixture separate from the public interface. `screenshots` verifies alignment during article scrolling, text/image editing, dragging over controls, fixed material, fallback, and layouts from 320 to 1440px; it also updates site captures at 2×. The optional `SHOWCASE_BROWSER` environment variable selects an existing Chromium/Edge executable.
+
+`screenshots:readme` reproduces the four presentation images using the same core and controls as the demo. The capture composition lives in `scripts/fixtures/readme.*`, outside the skill package; it changes neither the recipe nor the site's interface.
 
 ### Package a release
 

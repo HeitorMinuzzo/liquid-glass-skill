@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liquid Glass Skill — README photography</title>
+  <link rel="stylesheet" href="../../liquid-glass-apple/assets/core/liquid-glass.css">
+  <link rel="stylesheet" href="../../liquid-glass-apple/assets/core/glass-range.css">
+  <link rel="stylesheet" href="../../docs/showcase/controls.css">
+  <link rel="stylesheet" href="readme.css">
+  <script type="module" src="readme.js"></script>
+</head>
+<body data-liquid-glass data-theme="light">
+  <svg class="definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="edit" viewBox="0 0 24 24"><path d="m16 3 5 5-11 11-7 2 2-7zM14 5l5 5"/></symbol>
+      <symbol id="split" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M12 4v16"/></symbol>
+      <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="volume" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    </defs>
+  </svg>
+  <main id="portrait" class="portrait glass-scene" data-glass-backdrop="none">
+    <div id="portrait-source" class="portrait-source" aria-hidden="true">
+      <div class="sample-copy">
+        <h2>Thoughtful by design.</h2>
+        <p><span>Bring clarity to every interaction.</span><span>Keep the details. Let the surface breathe.</span><span>A little light changes everything.</span></p>
+      </div>
+    </div>
+    <header>
+      <div class="eyebrow"><span class="mark" aria-hidden="true"><i></i><i></i></span> A CODING AGENT SKILL</div>
+      <p id="variant" class="variant">LIGHT / NEUTRAL</p>
+      <h1>Liquid Glass.</h1>
+      <p class="lead">Refracted edges. Real transparency.</p>
+    </header>
+    <label class="hero-search liquid-glass" data-glass-field>
+      <span class="glass-material" aria-hidden="true"></span>
+      <span class="glass-content"><svg aria-hidden="true"><use href="#search"/></svg><input type="search" placeholder="Search anything" aria-label="Search example" autocomplete="off"></span>
+      <span class="glass-rim" aria-hidden="true"></span>
+    </label>
+    <div class="specimens">
+      <figure>
+        <div class="lg-segmented stacked liquid-glass" style="--segments:3" role="group" aria-label="View mode">
+          <span class="lg-segment-material glass-material" aria-hidden="true"></span>
+          <span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span>
+          <button type="button" aria-pressed="true"><svg aria-hidden="true"><use href="#edit"/></svg><span>Editor</span></button>
+          <button type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#split"/></svg><span>Split</span></button>
+          <button type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>Preview</span></button>
+          <span class="lg-segment-rim glass-rim" aria-hidden="true"></span>
+        </div>
+        <figcaption>Switcher</figcaption>
+      </figure>
+      <figure>
+        <div class="volume liquid-glass">
+          <span class="glass-material" aria-hidden="true"></span>
+          <div class="glass-content"><svg aria-hidden="true"><use href="#volume"/></svg><div class="glass-range">
+            <span class="glass-range-track liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-range-fill"></span><span class="glass-rim"></span></span>
+            <span class="glass-range-thumb liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-rim"></span></span>
+            <input type="range" min="0" max="100" value="64" aria-label="Volume">
+          </div><output aria-hidden="true">64</output></div>
+          <span class="glass-rim" aria-hidden="true"></span>
+        </div>
+        <figcaption>Slider</figcaption>
+      </figure>
+      <figure>
+        <button class="action liquid-glass" type="button"><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#plus"/></svg>Create project</span><span class="glass-rim" aria-hidden="true"></span></button>
+        <figcaption>Button</figcaption>
+      </figure>
+      <figure>
+        <button class="circle liquid-glass" type="button" aria-label="Favorite"><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#heart"/></svg></span><span class="glass-rim" aria-hidden="true"></span></button>
+        <figcaption>Action</figcaption>
+      </figure>
+    </div>
+    <footer><span>By Heitor Minuzzo</span><span>Real components · Browser rendered · 2×</span></footer>
+  </main>
+</body>
+</html>

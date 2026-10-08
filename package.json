@@ -9,6 +9,7 @@
     "verify:package": "node scripts/verify-package.mjs",
     "verify:lens": "node scripts/verify-lens.mjs",
     "screenshots:reference": "node scripts/capture-reference.mjs",
+    "screenshots:readme": "node scripts/capture-readme.mjs",
     "package:skill": "python scripts/package-skill.py"
   },
   "engines": {

@@ -1,0 +1,70 @@
+{
+  "source": "scripts/fixtures/readme.html",
+  "modifiedMaterial": false,
+  "captures": [
+    {
+      "file": "readme-neutral-light.png",
+      "theme": "light",
+      "backdrop": "none",
+      "width": 2240,
+      "height": 1600,
+      "deviceScaleFactor": 2,
+      "surfaces": 7,
+      "material": "approved-shared-core",
+      "geometry": {
+        "x": 259,
+        "y": 388,
+        "width": 604,
+        "height": 80
+      }
+    },
+    {
+      "file": "readme-color-light.png",
+      "theme": "light",
+      "backdrop": "aurora",
+      "width": 2240,
+      "height": 1600,
+      "deviceScaleFactor": 2,
+      "surfaces": 7,
+      "material": "approved-shared-core",
+      "geometry": {
+        "x": 259,
+        "y": 388,
+        "width": 604,
+        "height": 80
+      }
+    },
+    {
+      "file": "readme-neutral-dark.png",
+      "theme": "dark",
+      "backdrop": "none",
+      "width": 2240,
+      "height": 1600,
+      "deviceScaleFactor": 2,
+      "surfaces": 7,
+      "material": "approved-shared-core",
+      "geometry": {
+        "x": 259,
+        "y": 388,
+        "width": 604,
+        "height": 80
+      }
+    },
+    {
+      "file": "readme-color-dark.png",
+      "theme": "dark",
+      "backdrop": "aurora",
+      "width": 2240,
+      "height": 1600,
+      "deviceScaleFactor": 2,
+      "surfaces": 7,
+      "material": "approved-shared-core",
+      "geometry": {
+        "x": 259,
+        "y": 388,
+        "width": 604,
+        "height": 80
+      }
+    }
+  ]
+}
