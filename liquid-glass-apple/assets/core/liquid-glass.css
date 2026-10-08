@@ -1,0 +1,87 @@
+/* Reusable material, refined in the SKILLS playground. AGPL-3.0-only.
+ * Geometry, layout, semantic controls and brand colors belong to the host app.
+ */
+[data-liquid-glass] {
+  --glass-neutral: #e8e8e9;
+  --glass-solid: #e8e8e9;
+  --glass-text: #0e0e12;
+  --glass-muted: #525268;
+  --glass-silver: #bbbbbc;
+  --glass-tint: 6%;
+  --glass-fallback-blur: 8px;
+  --glass-radius: 16px;
+  --glass-halo: #f5f5f78c;
+  --glass-rim-shadow: 0 1px 2px #00000014, 0 5px 12px -4px #0000002b;
+  --glass-edge-light: linear-gradient(135deg, #ffffff99, #ffffff20 32%, #72757c42 66%, #ffffff66);
+  --glass-field-focus-edge: linear-gradient(135deg, #ffffff, #ffffff70 32%, #72757c80 66%, #ffffffb3);
+  --glass-selected-fill: color-mix(in srgb, #bbbbbc 32%, transparent);
+  --glass-selected-shadow: inset 0 1px 2px #ffffffb3, inset 1px 0 2px #ffffff59, inset 0 -2px 3px #0000001f, 0 1px 2px #00000014;
+  --glass-background: var(--glass-neutral);
+}
+[data-liquid-glass][data-theme="dark"] {
+  --glass-tint: 12%;
+  --glass-neutral: #1b1b1d;
+  --glass-solid: #272729;
+  --glass-text: #e1e1e1;
+  --glass-muted: #bdbdc8;
+  --glass-halo: #1b1b1d99;
+  --glass-rim-shadow: 0 1px 3px #00000040, 0 6px 12px -4px #00000080;
+  --glass-edge-light: linear-gradient(135deg, #ffffff59, #ffffff10 32%, #00000028 66%, #ffffff48);
+  --glass-field-focus-edge: linear-gradient(135deg, #ffffffad, #ffffff38 32%, #00000040 66%, #ffffff91);
+  --glass-selected-fill: color-mix(in srgb, #bbbbbc 14%, transparent);
+  --glass-selected-shadow: inset 0 1px 2px #ffffff40, inset 1px 0 2px #ffffff1f, inset 0 -2px 3px #0000004d, 0 1px 2px #00000033;
+}
+/* Color lives behind the material. Neutral is a complete, first-class variant. */
+[data-glass-backdrop="none"] { --glass-background: var(--glass-neutral); }
+[data-glass-backdrop="aurora"], [data-glass-backdrop="ocean"], [data-glass-backdrop="sunset"] {
+  --glass-background:
+    linear-gradient(90deg, var(--glass-neutral), transparent 3%, transparent 97%, var(--glass-neutral)),
+    linear-gradient(0deg, var(--glass-neutral), transparent 4%, transparent 96%, var(--glass-neutral)),
+    radial-gradient(ellipse clamp(150px, 30vw, 420px) clamp(140px, 25vw, 350px) at 22% 16%, var(--glass-wash-a) 0%, color-mix(in srgb, var(--glass-wash-a) 35%, transparent) 35%, transparent 82%),
+    radial-gradient(ellipse clamp(150px, 28vw, 400px) clamp(140px, 24vw, 340px) at 80% 32%, var(--glass-wash-b) 0%, color-mix(in srgb, var(--glass-wash-b) 35%, transparent) 35%, transparent 82%),
+    radial-gradient(ellipse clamp(150px, 30vw, 420px) clamp(140px, 25vw, 350px) at 42% 54%, var(--glass-wash-c) 0%, color-mix(in srgb, var(--glass-wash-c) 35%, transparent) 35%, transparent 82%),
+    radial-gradient(ellipse clamp(150px, 28vw, 400px) clamp(140px, 24vw, 340px) at 82% 78%, var(--glass-wash-a) 0%, color-mix(in srgb, var(--glass-wash-a) 35%, transparent) 35%, transparent 82%),
+    radial-gradient(ellipse clamp(150px, 28vw, 400px) clamp(140px, 24vw, 340px) at 18% 90%, var(--glass-wash-b) 0%, color-mix(in srgb, var(--glass-wash-b) 35%, transparent) 35%, transparent 82%),
+    var(--glass-neutral);
+}
+[data-glass-backdrop="aurora"] {
+  --glass-wash-a: #b0c9dc8c; --glass-wash-b: #b4abca5c; --glass-wash-c: #9fbdb473;
+}
+[data-glass-backdrop="ocean"] {
+  --glass-wash-a: #b4cdda8c; --glass-wash-b: #adc3c55c; --glass-wash-c: #9eb1c773;
+}
+[data-glass-backdrop="sunset"] {
+  --glass-wash-a: #dfc4b58c; --glass-wash-b: #bcb0c45c; --glass-wash-c: #c6b0a573;
+}
+[data-theme="dark"][data-glass-backdrop="aurora"], [data-theme="dark"] [data-glass-backdrop="aurora"] {
+  --glass-wash-a: #759bb142; --glass-wash-b: #80759033; --glass-wash-c: #62807939;
+}
+[data-theme="dark"][data-glass-backdrop="ocean"], [data-theme="dark"] [data-glass-backdrop="ocean"] {
+  --glass-wash-a: #7497ad42; --glass-wash-b: #6d858933; --glass-wash-c: #687b9439;
+}
+[data-theme="dark"][data-glass-backdrop="sunset"], [data-theme="dark"] [data-glass-backdrop="sunset"] {
+  --glass-wash-a: #b8948042; --glass-wash-b: #8b7d9333; --glass-wash-c: #927d7139;
+}
+.glass-scene { background: var(--glass-background, var(--glass-neutral)); }
+.liquid-glass { position: relative; isolation: isolate; border-radius: var(--glass-radius); color: var(--glass-text); }
+.glass-material { position: absolute; inset: 0; z-index: 0; border-radius: inherit; overflow: hidden; pointer-events: none; background: color-mix(in srgb, var(--glass-silver) var(--glass-tint), transparent); -webkit-backdrop-filter: blur(var(--glass-fallback-blur)) saturate(150%); backdrop-filter: blur(var(--glass-fallback-blur)) saturate(150%); }
+.glass-content { position: relative; z-index: 1; color: inherit; text-shadow: 0 1px 1px var(--glass-halo); }
+.glass-rim { position: absolute; inset: 0; z-index: 3; border-radius: inherit; pointer-events: none; box-shadow: var(--glass-rim-shadow); }
+.glass-rim::before { content: ''; position: absolute; inset: 0; padding: .75px; border-radius: inherit; background: var(--glass-edge-light); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.liquid-glass[data-photo-glass] > .glass-rim { opacity: var(--glass-photo-rim-opacity, 1); }
+/* A text field focuses its existing glass rim, without a native rectangular outline. */
+.liquid-glass[data-glass-field] input:is([type="search"], [type="text"], :not([type])):focus { outline: none; }
+.liquid-glass[data-glass-field]:focus-within > .glass-rim::before { background: var(--glass-field-focus-edge); }
+.glass-lens-definitions { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.glass-lens-window { display: none; position: absolute; inset: 0; pointer-events: none; }
+.glass-lens-scene { display: block; position: absolute; pointer-events: none; }
+.glass-material[data-glass-lens="edge"] { background: transparent; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none; }
+.glass-material[data-glass-lens="edge"] > .glass-lens-window { display: block; }
+.glass-material[data-glass-lens="edge"]::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: color-mix(in srgb, var(--glass-silver) var(--glass-tint), transparent); }
+[data-liquid-glass][data-glass-fallback="true"] .glass-material,
+[data-liquid-glass][data-lg-fallback="true"] .glass-material { background: var(--glass-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+[data-glass-fallback="true"] .glass-rim::before, [data-lg-fallback="true"] .glass-rim::before { display: none; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass-material { background: var(--glass-solid); } }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) { .glass-material { background: var(--glass-solid); backdrop-filter: none; -webkit-backdrop-filter: none; } .glass-rim::before { display: none; } }
+@media (forced-colors: active) { .liquid-glass { color: CanvasText; } .glass-material { background: Canvas; backdrop-filter: none; -webkit-backdrop-filter: none; } .glass-rim { box-shadow: none; border: 1px solid CanvasText; } .glass-rim::before { display: none; } .glass-content { text-shadow: none; } }
+@media (forced-colors: active) { .liquid-glass[data-glass-field]:focus-within > .glass-rim { border: 2px solid Highlight; } }

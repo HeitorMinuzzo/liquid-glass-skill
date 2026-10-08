@@ -1,0 +1,29 @@
+[
+  {
+    "id": "architecture",
+    "label": "Architecture",
+    "author": "Joshua Chai",
+    "source": "https://unsplash.com/photos/white-concrete-high-rise-building-weurBA3Pyts",
+    "imageSource": "https://images.unsplash.com/photo-1533046652171-aecb6943c03a?fm=jpg&fit=crop&w=1600&h=1100&q=85",
+    "file": "architecture.jpg",
+    "license": "https://unsplash.com/license"
+  },
+  {
+    "id": "coast",
+    "label": "Coast",
+    "author": "Rahul Chakraborty",
+    "source": "https://unsplash.com/photos/aerial-view-of-ocean-waves-UB9qK0nkRPs",
+    "imageSource": "https://images.unsplash.com/photo-1587033250637-ff8f56eac3a8?fm=jpg&fit=crop&w=1600&h=1100&q=85",
+    "file": "coast.jpg",
+    "license": "https://unsplash.com/license"
+  },
+  {
+    "id": "lake",
+    "label": "Alpine lake",
+    "author": "Simon Hurry",
+    "source": "https://unsplash.com/photos/lake-near-mountain-under-blue-sky-during-daytime-jAAk__SlP8U",
+    "imageSource": "https://images.unsplash.com/photo-1624239364354-93ae3e590f66?fm=jpg&fit=crop&w=1600&h=1100&q=85",
+    "file": "lake.jpg",
+    "license": "https://unsplash.com/license"
+  }
+]

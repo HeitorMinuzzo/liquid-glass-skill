@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+  <title>Liquid Glass Apple — Skill showcase</title><meta name="description" content="See what the Liquid Glass Apple skill can create: live component examples, refracted edges and an interactive playground.">
+  <link rel="stylesheet" href="../../liquid-glass-apple/assets/core/liquid-glass.css"><link rel="stylesheet" href="../../liquid-glass-apple/assets/core/glass-range.css"><link rel="stylesheet" href="controls.css"><link rel="stylesheet" href="showcase.css"><link rel="stylesheet" href="playground.css">
+  <script type="module" src="showcase.js"></script><script type="module" src="playground.js"></script>
+</head>
+<body data-liquid-glass data-theme="light" data-glass-backdrop="none" data-lg-backdrop="none">
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-mark" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="6"/><path d="M3 12h18M12 3v18"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v1M3 7h17a1 1 0 0 1 1 1l-2 11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="m16 3 5 5-11 11-7 2 2-7zM14 5l5 5"/></symbol>
+      <symbol id="i-split" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M12 4v16"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5zM20 2v4m-2-2h4"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9zM14 3v6h6M8 13h8M8 17h5"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11z"/></symbol>
+      <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 3v15h15M3 6h15v15"/></symbol>
+      <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 9M3 3v7h7"/></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5 0 5 12 10 12h5m-4-4 4 4-4 4M3 18h3c5 0 5-12 10-12h5m-4-4 4 4-4 4"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+    </defs>
+  </svg>
+<div class="page">
+  <header class="masthead">
+    <a class="brand" href="?view=home" data-demo-link="home"><span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>Liquid Glass<span class="brand-caption">Skill showcase</span></a>
+    <nav class="demo-nav" aria-label="Showcase pages"><a href="?view=home" data-demo-link="home">Home</a><a href="?view=gallery" data-demo-link="gallery">Components</a><a href="?view=playground" data-demo-link="playground">Playground <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></nav>
+    <div class="appearance">
+      <div id="theme-scene" class="theme-scene glass-scene">
+        <div class="theme-source" aria-hidden="true"></div>
+        <div class="theme-picker lg-segmented liquid-glass" style="--segments:2" role="group" aria-label="Color theme">
+          <span class="lg-segment-material glass-material" aria-hidden="true"></span>
+          <span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span>
+          <button type="button" data-theme-choice="light" aria-pressed="true" aria-label="Light" title="Light"><svg aria-hidden="true"><use href="#i-sun"/></svg></button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark" title="Dark"><svg aria-hidden="true"><use href="#i-moon"/></svg></button>
+          <span class="lg-segment-rim glass-rim" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div id="backdrop-scene" class="backdrop-scene glass-scene">
+        <div class="backdrop-source" aria-hidden="true"></div>
+        <button id="backdrop" class="preset-picker liquid-glass" type="button" aria-label="Background" aria-describedby="backdrop-label" aria-haspopup="menu" aria-expanded="false" aria-controls="backdrop-menu">
+          <span class="glass-material" aria-hidden="true"></span>
+          <span class="glass-content"><span id="backdrop-label">No colors</span><svg aria-hidden="true"><use href="#i-chev"/></svg></span>
+          <span class="glass-rim" aria-hidden="true"></span>
+        </button>
+        <div id="backdrop-menu-scene" class="preset-menu-scene" hidden>
+          <div id="backdrop-menu" class="preset-menu liquid-glass" role="menu" aria-label="Background lights">
+            <span class="glass-material" aria-hidden="true"></span>
+            <div class="glass-content">
+              <button type="button" role="menuitemradio" data-backdrop-choice="none" aria-checked="true" tabindex="-1"><span>No colors</span><svg aria-hidden="true"><use href="#i-check"/></svg><span class="menu-choice-rim glass-rim" aria-hidden="true"></span></button>
+              <button type="button" role="menuitemradio" data-backdrop-choice="aurora" aria-checked="false" tabindex="-1"><span>Aurora</span><svg aria-hidden="true"><use href="#i-check"/></svg><span class="menu-choice-rim glass-rim" aria-hidden="true"></span></button>
+              <button type="button" role="menuitemradio" data-backdrop-choice="ocean" aria-checked="false" tabindex="-1"><span>Ocean</span><svg aria-hidden="true"><use href="#i-check"/></svg><span class="menu-choice-rim glass-rim" aria-hidden="true"></span></button>
+              <button type="button" role="menuitemradio" data-backdrop-choice="sunset" aria-checked="false" tabindex="-1"><span>Sunset</span><svg aria-hidden="true"><use href="#i-check"/></svg><span class="menu-choice-rim glass-rim" aria-hidden="true"></span></button>
+            </div>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="home">
+    <div class="home-overview">
+    <section class="home-intro" aria-labelledby="home-title">
+      <p class="eyebrow">A CODING AGENT SKILL</p>
+      <h1 id="home-title">Liquid Glass</h1>
+      <p class="home-lead">A skill for Apple-inspired glass interfaces.</p>
+      <p class="home-author">Author: Heitor Minuzzo</p>
+      <div class="home-actions"><a class="home-primary" href="?view=gallery" data-demo-link="gallery">Explore components <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="home-secondary" href="?view=playground" data-demo-link="playground" data-demo-sample="search">Try the playground <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </section>
+    <section id="home-scene" class="home-samples optical-stage glass-scene" aria-label="Component examples created using the skill">
+      <div class="home-source" aria-hidden="true"></div>
+      <figure class="home-example" aria-labelledby="home-search-title">
+        <div class="home-component"><label class="liquid-glass glass-search" data-glass-field><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" aria-label="Search skill demonstration" placeholder="Search anything" autocomplete="off"></span><span class="glass-rim" aria-hidden="true"></span></label></div>
+        <figcaption id="home-search-title">Search</figcaption>
+      </figure>
+      <figure class="home-example" aria-labelledby="home-switcher-title">
+        <div class="home-component"><div class="lg-segmented stacked liquid-glass" style="--segments:3" role="group" aria-label="Home view mode"><span class="lg-segment-material glass-material" aria-hidden="true"></span><span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span><button type="button" aria-pressed="true" data-segment><svg aria-hidden="true"><use href="#i-edit"/></svg><span>Editor</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-split"/></svg><span>Split</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-eye"/></svg><span>Preview</span></button><span class="lg-segment-rim glass-rim" aria-hidden="true"></span></div></div>
+        <figcaption id="home-switcher-title">Switcher</figcaption>
+      </figure>
+      <figure class="home-example" aria-labelledby="home-button-title">
+        <div class="home-component"><button class="liquid-glass glass-button" type="button" data-home-action><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-plus"/></svg><span class="home-action-label" aria-live="polite">Create project</span></span><span class="glass-rim" aria-hidden="true"></span></button></div>
+        <figcaption id="home-button-title">Button</figcaption>
+      </figure>
+    </section>
+    <p class="home-examples-note">Examples created using the Liquid Glass Apple skill.</p>
+    </div>
+  </main>
+  <main id="gallery" hidden>
+    <section class="collection-intro"><p class="eyebrow">CREATED WITH THE LIQUID GLASS APPLE SKILL</p><h1>Component examples.</h1><p>These interactive components are examples created using the skill. Explore the glass material across different shapes and controls.</p></section>
+    <section class="collection-section optical-stage glass-scene component-shelf" aria-label="Liquid Glass components"><div class="specimen-source" aria-hidden="true"></div><div class="specimen-grid"><article class="specimen"><div class="component-control"><div  class="lg-segmented stacked liquid-glass " style="--segments:3" role="group" aria-label="View mode"><span class="lg-segment-material glass-material" aria-hidden="true"></span><span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span><button type="button" aria-pressed="true" data-segment><svg aria-hidden="true"><use href="#i-edit"/></svg><span>Editor</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-split"/></svg><span>Split</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-eye"/></svg><span>Preview</span></button><span class="lg-segment-rim glass-rim" aria-hidden="true"></span></div></div><div class="specimen-caption"><h2>Switcher</h2><span class="specimen-feedback" role="status">Choose a view</span></div></article><article class="specimen"><div class="component-control"><label  class="liquid-glass glass-search" data-glass-field><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" aria-label="Search example" placeholder="Search anything" autocomplete="off"></span><span class="glass-rim" aria-hidden="true"></span></label></div><div class="specimen-caption"><h2>Search</h2><span class="specimen-feedback" role="status">Type to try</span></div></article><article class="specimen"><div class="component-control"><button class="liquid-glass glass-circle" type="button" aria-label="Save example" aria-pressed="false" data-favorite><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><span class="glass-rim" aria-hidden="true"></span></button></div><div class="specimen-caption"><h2>Action</h2><span class="specimen-feedback" role="status">Tap to save</span></div></article><article class="specimen"><div class="component-control"><div class="liquid-glass glass-toolbar" role="group" aria-label="Photo actions"><span class="glass-material" aria-hidden="true"></span><div class="glass-content"><button aria-label="Crop photo" data-action="Crop selected"><svg aria-hidden="true"><use href="#i-crop"/></svg></button><button aria-label="Rotate photo" data-action="Rotation selected"><svg aria-hidden="true"><use href="#i-rotate"/></svg></button><button aria-label="Save example" aria-pressed="false" data-favorite><svg aria-hidden="true"><use href="#i-heart"/></svg></button></div><span class="glass-rim" aria-hidden="true"></span></div></div><div class="specimen-caption"><h2>Toolbar</h2><span class="specimen-feedback" role="status">Choose an action</span></div></article>
+      <article class="specimen">
+        <div class="component-control">
+          <button class="liquid-glass glass-button" type="button" data-action="Project created">
+            <span class="glass-material" aria-hidden="true"></span>
+            <span class="glass-content"><svg aria-hidden="true"><use href="#i-plus"/></svg>Create project</span>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="specimen-caption"><h2>Button</h2><span class="specimen-feedback" role="status">Try the action</span></div>
+      </article>
+      <article class="specimen">
+        <div class="component-control">
+          <button class="liquid-glass glass-toggle" type="button" role="switch" aria-label="Enable notifications" aria-checked="true">
+            <span class="glass-material" aria-hidden="true"></span>
+            <span class="glass-content"><span class="toggle-thumb"><span class="glass-rim" aria-hidden="true"></span><svg aria-hidden="true"><use href="#i-check"/></svg></span></span>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="specimen-caption"><h2>Switch</h2><span class="specimen-feedback" role="status">Notifications on</span></div>
+      </article>
+      <article class="specimen">
+        <div class="component-control">
+          <div class="liquid-glass glass-slider">
+            <span class="glass-material" aria-hidden="true"></span>
+            <div class="glass-content"><svg aria-hidden="true"><use href="#i-volume"/></svg><div class="glass-range"><span class="glass-range-track liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-range-fill"></span><span class="glass-rim"></span></span><span class="glass-range-thumb liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-rim"></span></span><input type="range" min="0" max="100" value="64" aria-label="Volume"></div><output aria-hidden="true">64</output></div>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="specimen-caption"><h2>Slider</h2><span class="specimen-feedback" role="status">Adjust the volume</span></div>
+      </article>
+      <article class="specimen">
+        <div class="component-control">
+          <div class="liquid-glass glass-stepper" role="group" aria-label="Quantity">
+            <span class="glass-material" aria-hidden="true"></span>
+            <div class="glass-content"><button type="button" data-step="-1" aria-label="Decrease quantity"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-label="Current quantity">2</output><button type="button" data-step="1" aria-label="Increase quantity"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="specimen-caption"><h2>Stepper</h2><span class="specimen-feedback" role="status">Choose a quantity</span></div>
+      </article>
+      <article class="specimen">
+        <div class="component-control glass-chips" role="group" aria-label="Media filter" data-choice-group>
+          <button class="liquid-glass glass-chip" type="button" data-filter="All" aria-pressed="true"><span class="glass-material" aria-hidden="true"></span><span class="glass-content">All</span><span class="glass-rim" aria-hidden="true"></span></button>
+          <button class="liquid-glass glass-chip" type="button" data-filter="Photos" aria-pressed="false"><span class="glass-material" aria-hidden="true"></span><span class="glass-content">Photos</span><span class="glass-rim" aria-hidden="true"></span></button>
+          <button class="liquid-glass glass-chip" type="button" data-filter="Videos" aria-pressed="false"><span class="glass-material" aria-hidden="true"></span><span class="glass-content">Videos</span><span class="glass-rim" aria-hidden="true"></span></button>
+        </div>
+        <div class="specimen-caption"><h2>Filter chips</h2><span class="specimen-feedback" role="status">All media selected</span></div>
+      </article>
+      <article class="specimen">
+        <div class="component-control">
+          <div class="liquid-glass glass-media" role="group" aria-label="Playback preview">
+            <span class="glass-material" aria-hidden="true"></span>
+            <div class="glass-content"><span class="media-art" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="media-copy"><strong>Quiet hours</strong><span class="media-state">Paused · 03:24</span></span><button type="button" aria-label="Play preview" aria-pressed="false" data-playback><svg aria-hidden="true"><use href="#i-play"/></svg></button></div>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="specimen-caption"><h2>Playback</h2><span class="specimen-feedback" role="status">Preview play and pause</span></div>
+      </article>
+    </div></section>
+    <div class="gallery-footer"><p>These are demonstration components. Test the material over your own text and images in the playground.</p><a class="plain-link" data-demo-link="playground" href="?view=playground">Open playground <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+  </main>
+  <main id="playground-page" hidden>
+  <section id="playground" aria-labelledby="playground-title">
+    <div class="playground-heading"><div><p class="eyebrow">THE MATERIAL IN MOTION</p><h2 id="playground-title">Playground</h2></div><p>Scroll inside the playground. Drag the glass anywhere.<br>Edit the background and words. The material stays the same.</p></div>
+    <div class="article-tools">
+      <div class="sample-picker" role="group" aria-label="Component sample" data-choice-group><button data-lab-sample="switcher" aria-pressed="true">Switcher</button><button data-lab-sample="search" aria-pressed="false">Search</button></div>
+      <div class="component-size"><label for="lab-size">Size</label><input id="lab-size" type="range" min="100" max="200" step="10" value="100" aria-valuetext="100 percent"><output id="lab-size-value" for="lab-size" aria-hidden="true">100%</output></div>
+      <div class="article-actions"><button id="lab-edit" class="plain-button"><svg aria-hidden="true"><use href="#i-edit"/></svg> Edit background & text</button><button id="lab-reset" class="plain-button">Reset</button></div>
+    </div>
+    <div id="lab-viewport" class="lab-viewport">
+    <div id="lab-scroll" class="lab-scroll" tabindex="0" role="region" aria-label="Scrollable playground article">
+    <section id="lab-stage" class="glass-scene article-stage">
+      <article id="lab-world" class="lab-world"></article>
+    </section>
+    </div>
+      <div id="lab-object" class="lab-object" aria-label="Movable Liquid Glass component">
+        <button class="lab-drag" aria-label="Move glass with arrow keys" title="Drag anywhere on the glass. Arrow keys move it; Home resets its position."><svg aria-hidden="true"><use href="#i-more"/></svg></button>
+        <div id="lab-switcher" class="lab-sample"><div  class="lg-segmented stacked liquid-glass " style="--segments:3" role="group" aria-label="View mode"><span class="lg-segment-material glass-material" aria-hidden="true"></span><span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span><button type="button" aria-pressed="true" data-segment><svg aria-hidden="true"><use href="#i-edit"/></svg><span>Editor</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-split"/></svg><span>Split</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-eye"/></svg><span>Preview</span></button><span class="lg-segment-rim glass-rim" aria-hidden="true"></span></div></div>
+        <div id="lab-search" class="lab-sample" hidden><label  class="liquid-glass glass-search" data-glass-field><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" aria-label="Search example" placeholder="Search anything" autocomplete="off"></span><span class="glass-rim" aria-hidden="true"></span></label></div>
+      </div>
+    </div>
+    <p class="playground-footnote">A fixed glass material. A background of your own.</p>
+    <dialog id="lab-editor" aria-labelledby="editor-title"><form method="dialog"><div class="editor-heading"><h2 id="editor-title">Make the article yours</h2><button class="editor-close" aria-label="Close editor" value="close">×</button></div><p>Change what sits behind the glass.</p><label for="lab-title">Article title</label><input id="lab-title" value="Liquid glass" maxlength="140"><label for="lab-copy">Article text</label><textarea id="lab-copy" rows="7" maxlength="6000" spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qui maxime optio quam debitis autem, maiores odio tenetur dicta aperiam aliquam, iusto nisi ipsum tempore dolore doloremque facere culpa sint sequi ducimus corporis veritatis cumque corrupti sed. Ipsa dolor quod alias dicta dolores. Ducimus pariatur nostrum quo, impedit facilis voluptatibus! Non doloremque, facere neque dolorem in voluptatibus harum magnam adipisci tenetur.
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident. Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</textarea><div class="editor-background"><label>Page color<input id="lab-paper" type="color" value="#e8e8e9"></label><label>Text color<input id="lab-ink" type="color" value="#222244"></label><label class="image-toggle"><input id="lab-images" type="checkbox" checked> Include photographs</label></div><div class="editor-images"><button id="lab-shuffle" type="button" class="plain-button"><svg aria-hidden="true"><use href="#i-shuffle"/></svg> Shuffle images</button><label class="upload-button">Use your image<input id="lab-image" type="file" accept="image/png,image/jpeg,image/webp,image/avif,image/gif"></label><span id="lab-image-name"></span></div><p id="lab-image-error" role="alert" hidden></p><div class="editor-bottom"><button id="lab-lorem" type="button" class="plain-button">Restore lorem ipsum</button><button class="editor-done" value="done">Done <svg aria-hidden="true"><use href="#i-check"/></svg></button></div></form></dialog>
+    <p id="lab-optics-status" class="sr-only" role="status"></p>
+  </section>
+  </main>
+  <footer class="page-footer"><span>Liquid Glass Apple · Skill demonstration <span class="footer-author">Author: Heitor Minuzzo</span></span><a href="https://github.com/HeitorMinuzzo/liquid-glass-skill#readme">Documentation <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></footer>
+</div>
+</body>
+</html>

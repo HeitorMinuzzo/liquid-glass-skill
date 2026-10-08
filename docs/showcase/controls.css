@@ -1,0 +1,67 @@
+/* Compact selector geometry retains attribution to Vadik Matveev (vadik.design).
+ * The optical material is supplied by the current skill module. AGPL-3.0-only. */
+[data-liquid-glass] {
+  --lg-glass: #bbbbbc; --lg-alpha: .12; --lg-blur: 8px; --lg-saturation: 150%;
+  --lg-bg: var(--glass-neutral); --lg-text: var(--glass-text); --lg-muted: var(--glass-muted);
+  --lg-accent: var(--glass-text); --lg-card: #f5f5f7; --lg-danger: #b3293a;
+  --lg-hairline: #22224414; --lg-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --lg-control-selected: var(--glass-selected-fill);
+  --lg-surface-shadow: var(--glass-rim-shadow);
+  --lg-selection-shadow: inset 0 0 0 1px var(--lg-hairline), inset 0 1px 2px #00000012, inset 0 -1px 1px #ffffff66, 0 1px 3px #00000018;
+  --lg-indicator-shadow: var(--glass-selected-shadow);
+}
+[data-theme="dark"] { --lg-hairline: #ffffff14; --lg-card: #242426; --lg-danger: #ffa3a7; --lg-control-selected: var(--glass-selected-fill); --lg-selection-shadow: inset 0 0 0 1px var(--lg-hairline), inset 0 1px 2px #00000024, inset 0 -1px 1px #ffffff18, 0 1px 3px #00000030; --lg-indicator-shadow: var(--glass-selected-shadow); }
+.lg-app { background: var(--glass-background); color: var(--lg-text); }
+.lg-surface { background: color-mix(in srgb, #bbbbbc 12%, transparent); backdrop-filter: blur(8px) saturate(150%); -webkit-backdrop-filter: blur(8px) saturate(150%); }
+.lg-divider { border: 0; height: 1px; background: var(--lg-hairline); margin: 12px 0; }
+.lg-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--lg-hairline); border-radius: 12px; padding: 10px 14px; background: transparent; color: var(--glass-text); font-size: 12px; }
+:where([data-liquid-glass]) .lg-segmented {
+  --segment-overlap: 8px;
+  display: grid; grid-template-columns: repeat(var(--segments), minmax(0,1fr)); gap: 8px;
+  position: relative; isolation: isolate; box-sizing: border-box;
+  padding: 8px 12px 10px; min-height: 50px; border-radius: 999px; user-select: none;
+  background: transparent; border: 0; box-shadow: none;
+}
+:where([data-liquid-glass]) .lg-segment-material {
+  --lg-alpha: .12;
+  position: absolute; inset: 0; z-index: 0; border-radius: inherit;
+  overflow: clip; clip-path: inset(0 round 999px); pointer-events: none; box-shadow: none;
+}
+:where([data-liquid-glass]) .lg-segment-indicator {
+  position: absolute; z-index: 1; inset: 4px auto 6px 4px;
+  width: calc((100% - 16px) / var(--segments) + 8px);
+  border-radius: 999px; pointer-events: none;
+  background: var(--lg-control-selected); box-shadow: none;
+  transition: left 500ms cubic-bezier(.22,.8,.2,1);
+}
+/* The selected layer has its own curved finish above the shared lens.
+ * Directional light rolls across the edge, with a single thin boundary. */
+:where([data-liquid-glass]) .lg-segment-indicator > .glass-rim {
+  --glass-rim-shadow: var(--lg-indicator-shadow);
+}
+:where([data-liquid-glass]) .lg-segment-rim {
+  position: absolute; inset: 0; z-index: 3; border-radius: inherit; pointer-events: none; box-shadow: var(--lg-surface-shadow);
+}
+:where([data-liquid-glass]) .lg-segmented button {
+  position: relative; z-index: 2; min-width: 0; min-height: 32px;
+  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 10px;
+  border: 0; border-radius: 999px; color: var(--lg-text); background: transparent;
+  font: 500 12px var(--lg-font); cursor: pointer;
+}
+:where([data-liquid-glass]) .lg-segmented button[aria-pressed="true"] { font-weight: 600; }
+:where([data-liquid-glass]) .lg-segmented button[aria-pressed="true"] svg { color: inherit; }
+:where([data-liquid-glass]) .lg-segmented button:not(:disabled):not([aria-pressed="true"]):hover { color: var(--lg-accent); }
+:where([data-liquid-glass]) .lg-segmented button:focus-visible { outline: 2px solid var(--lg-accent); outline-offset: -3px; }
+:where([data-liquid-glass]) .lg-segmented button:disabled { opacity: .45; cursor: default; }
+:where([data-liquid-glass]) .lg-segmented button span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+:where([data-liquid-glass]) .lg-segmented button svg { transition: scale 200ms cubic-bezier(.5,0,0,1); }
+:where([data-liquid-glass]) .lg-segmented button:not(:disabled):not([aria-pressed="true"]):hover svg { scale: 1.15; }
+:where([data-liquid-glass]) .lg-segmented.stacked { min-height: 52px; padding: 4px 12px; }
+:where([data-liquid-glass]) .lg-segmented.stacked .lg-segment-indicator { bottom: 4px; }
+:where([data-liquid-glass]) .lg-segmented.stacked button { flex-direction: column; min-height: 44px; gap: 3px; padding: 0 2px; }
+:where([data-liquid-glass]) .lg-segmented.stacked button span { font-size: 10px; }
+
+
+[data-glass-fallback="true"] .lg-surface, [data-lg-fallback="true"] .lg-surface { background: var(--glass-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+@media (prefers-reduced-motion: reduce) { .lg-segment-indicator, .lg-segmented button svg { transition: none; } }
+@media (forced-colors: active) { .lg-segment-indicator { background: Highlight; } .lg-segmented button[aria-pressed="true"] { color: HighlightText; } }

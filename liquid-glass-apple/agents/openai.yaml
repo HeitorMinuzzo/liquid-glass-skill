@@ -1,0 +1,4 @@
+interface:
+  display_name: "Liquid Glass Apple"
+  short_description: "Refração nas bordas, vidro legível e fundos opcionais"
+  default_prompt: "Use $liquid-glass-apple para aplicar a receita Liquid Glass aos componentes necessários deste projeto. Adapte a integração à arquitetura e ao framework existentes, preserve identidade e interações, mantenha a óptica calibrada em todos os estados e ofereça variantes de fundo neutro e colorido."

@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+*.md text
+*.css text
+*.js text
+*.ts text
+*.svelte text

@@ -1,0 +1,13 @@
+node_modules/
+test-results/
+playwright-report/
+.artifacts/
+dist/
+docs/images/experiment/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.env
+.env.*
+!.env.example

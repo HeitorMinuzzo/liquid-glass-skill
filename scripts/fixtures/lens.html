@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Optical engineering fixture</title><link rel="stylesheet" href="../../liquid-glass-apple/assets/core/liquid-glass.css"><link rel="stylesheet" href="../../docs/showcase/controls.css"><link rel="stylesheet" href="../../docs/showcase/showcase.css"><link rel="stylesheet" href="../../docs/showcase/playground.css"><style>
+body {padding:40px;} #lab-stage {width:820px;height:380px;position:relative;background:#fff;} .lab-world {position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;} .lab-object {position:absolute;left:50%;top:50%;width:324px;height:52px;} .lab-drag {display:none;}
+</style></head><body data-liquid-glass data-theme="light"><div id="lab-stage"><article class="lab-world" id="lab-world"></article><div id="lab-object" class="lab-object" aria-label="Movable Liquid Glass component">
+        <button class="lab-drag" aria-label="Move glass with arrow keys" title="Drag anywhere on the glass. Arrow keys move it; Home resets its position."><svg aria-hidden="true"><use href="#i-more"/></svg></button>
+        <div id="lab-switcher" class="lab-sample"><div  class="lg-segmented stacked liquid-glass " style="--segments:3" role="group" aria-label="View mode"><span class="lg-segment-material glass-material" aria-hidden="true"></span><span class="lg-segment-indicator" aria-hidden="true"><span class="glass-rim"></span></span><button type="button" aria-pressed="true" data-segment><svg aria-hidden="true"><use href="#i-edit"/></svg><span>Editor</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-split"/></svg><span>Split</span></button><button type="button" aria-pressed="false" data-segment><svg aria-hidden="true"><use href="#i-eye"/></svg><span>Preview</span></button><span class="lg-segment-rim glass-rim" aria-hidden="true"></span></div></div>
+        <div id="lab-search" class="lab-sample" hidden><label  class="liquid-glass glass-search"><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" aria-label="Search example" placeholder="Search anything" autocomplete="off"></span><span class="glass-rim" aria-hidden="true"></span></label></div>
+      </div>
+</div><script type="module">
+// This fixture exists only for rendering measurements. It is not a public demo.
+import {createGlassScene} from '../../liquid-glass-apple/assets/core/liquid-glass.js';
+const stage=document.querySelector('#lab-stage');
+const scene=createGlassScene({stage,source:document.querySelector('#lab-world'),themeRoot:document.body});
+const handles=[...document.querySelectorAll('.glass-material')].map(node=>scene.add(node));
+window.fixture={
+  sample(name) {document.querySelectorAll('.lab-sample').forEach(node=>node.hidden=node.id!==`lab-${name}`);scene.refresh();},
+  strength(value) {handles.forEach(handle=>handle.update({strength:value}));},
+  theme(value) {document.body.dataset.theme=value;scene.refresh(true);},
+  size(width,height) {Object.assign(document.querySelector('#lab-object').style,{width:`${width}px`,height:`${height}px`});scene.refresh();},
+  refresh:scene.refresh
+};
+window.addEventListener('pagehide',()=>scene.destroy());
+</script></body></html>

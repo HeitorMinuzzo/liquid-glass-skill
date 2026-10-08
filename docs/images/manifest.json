@@ -1,0 +1,274 @@
+{
+  "renderer": "Chromium / shared SVG refraction module",
+  "captures": [
+    {
+      "file": "home-light.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "home-dark.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "home-color-light.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "home",
+      "backdrop": "aurora",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "home-color-dark.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "home",
+      "backdrop": "aurora",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "home-mobile.png",
+      "width": 780,
+      "height": 1688,
+      "theme": "light",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "home-playground-light.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "playground below home showcase"
+    },
+    {
+      "file": "home-playground-dark.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "playground below home showcase"
+    },
+    {
+      "file": "home-playground-mobile.png",
+      "width": 780,
+      "height": 1688,
+      "theme": "light",
+      "view": "home",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "playground below home showcase"
+    },
+    {
+      "file": "components-light.png",
+      "width": 2880,
+      "height": 3106,
+      "theme": "light",
+      "view": "gallery",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-detail-light.png",
+      "width": 2464,
+      "height": 2154,
+      "theme": "light",
+      "view": "gallery",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-dark.png",
+      "width": 2880,
+      "height": 3106,
+      "theme": "dark",
+      "view": "gallery",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-detail-dark.png",
+      "width": 2464,
+      "height": 2154,
+      "theme": "dark",
+      "view": "gallery",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-color-light.png",
+      "width": 2880,
+      "height": 3106,
+      "theme": "light",
+      "view": "gallery",
+      "backdrop": "aurora",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-color-dark.png",
+      "width": 2880,
+      "height": 3106,
+      "theme": "dark",
+      "view": "gallery",
+      "backdrop": "aurora",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "components-mobile.png",
+      "width": 780,
+      "height": 4768,
+      "theme": "light",
+      "view": "gallery",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "playground-light.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "playground-dark.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "playground-search-light.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "playground-search-dark.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "playground-photo.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "article photograph"
+    },
+    {
+      "file": "playground-mixed.png",
+      "width": 2880,
+      "height": 2000,
+      "theme": "dark",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "article photograph"
+    },
+    {
+      "file": "playground-mobile.png",
+      "width": 780,
+      "height": 1688,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe"
+    },
+    {
+      "file": "material-photo-light.png",
+      "width": 968,
+      "height": 384,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "article photograph"
+    },
+    {
+      "file": "material-photo-dark.png",
+      "width": 968,
+      "height": 384,
+      "theme": "dark",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "article photograph"
+    },
+    {
+      "file": "material-empty-light.png",
+      "width": 968,
+      "height": 384,
+      "theme": "light",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "empty background",
+      "paper": "#ffffff"
+    },
+    {
+      "file": "material-empty-dark.png",
+      "width": 968,
+      "height": 384,
+      "theme": "dark",
+      "view": "playground",
+      "backdrop": "none",
+      "scale": 2,
+      "material": "fixed-recipe",
+      "content": "empty background",
+      "paper": "#000000"
+    }
+  ]
+}

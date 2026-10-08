@@ -1,0 +1,244 @@
+/* Material adapted from the theme switcher supplied by the user, by Vadik Matveev.
+ * Original: https://vadik.design — reference linked at https://freefrontend.com/css-liquid-glass/
+ * Keep the original 8px blur, 12% silver tint and directional inset shadows.
+ */
+[data-liquid-glass] {
+  --lg-glass: #bbbbbc;
+  --lg-light: #fff;
+  --lg-dark: #000;
+  --lg-reflex-light: var(--lg-rim, 1);
+  --lg-reflex-dark: 1;
+  --lg-blur: 8px;
+  --lg-sidebar-alpha: .12;
+  --lg-rim: 1;
+  --lg-saturation: 150%;
+  --lg-alpha: .12;
+  --lg-control-alpha: .12;
+  --lg-control-hover-alpha: .16;
+  --lg-control-selected: color-mix(in srgb, var(--lg-glass) calc(var(--lg-control-alpha) * 100%), transparent);
+  --lg-refraction: 5;
+  --lg-solid: #e8e8e9;
+  --lg-hairline: #22224414;
+  --lg-overlay: #16162330;
+  --lg-card: #f5f5f7;
+  --lg-reading: #f5f5f7;
+  --lg-surface-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 10%), transparent),
+    inset 1.8px 3px 0px -2px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 90%), transparent),
+    inset -2px -2px 0px -2px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 80%), transparent),
+    inset -3px -8px 1px -6px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 60%), transparent),
+    inset -0.3px -1px 4px 0px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 12%), transparent),
+    inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 20%), transparent),
+    inset 0px 3px 4px -2px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 20%), transparent),
+    inset 2px -6.5px 1px -4px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 10%), transparent),
+    0px 1px 5px 0px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 10%), transparent),
+    0px 6px 16px 0px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 8%), transparent);
+  --lg-selection-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 10%), transparent),
+    inset 2px 1px 0px -1px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 90%), transparent),
+    inset -1.5px -1px 0px -1px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 80%), transparent),
+    inset -2px -6px 1px -5px color-mix(in srgb, var(--lg-light) calc(var(--lg-reflex-light) * 60%), transparent),
+    inset -1px 2px 3px -1px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 20%), transparent),
+    inset 0px -4px 1px -2px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 10%), transparent),
+    0px 3px 6px 0px color-mix(in srgb, var(--lg-dark) calc(var(--lg-reflex-dark) * 8%), transparent);
+}
+[data-liquid-glass][data-theme="dark"] {
+  --lg-control-hover-alpha: .14;
+  --lg-reflex-light: calc(var(--lg-rim, 1) * .3);
+  --lg-reflex-dark: 2;
+  --lg-solid: #272729;
+  --lg-hairline: #ffffff14;
+  --lg-overlay: #0005;
+  --lg-card: #242426;
+  --lg-reading: #242426;
+}
+
+/* Three soft glows; the upper-left glow stays visible behind the glass controls. */
+[data-lg-backdrop] {
+  --lg-wallpaper-light: var(--lg-bg);
+  --lg-wallpaper-dark: var(--lg-bg);
+  --lg-wallpaper: var(--lg-wallpaper-light);
+}
+[data-lg-backdrop="aurora"] {
+  --lg-wallpaper-light: radial-gradient(ellipse 38% 46% at 8% 90%, #9fbdb473 0%, #9fbdb42e 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #b4abca5c 0%, #b4abca26 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #b0c9dc8c 0%, #b0c9dc38 35%, transparent 75%), var(--lg-bg);
+  --lg-wallpaper-dark: radial-gradient(ellipse 38% 46% at 8% 90%, #62807939 0%, #62807917 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #80759033 0%, #80759014 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #759bb142 0%, #759bb11c 35%, transparent 75%), var(--lg-bg);
+}
+[data-lg-backdrop="ocean"] {
+  --lg-wallpaper-light: radial-gradient(ellipse 38% 46% at 8% 90%, #9eb1c773 0%, #9eb1c72e 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #adc3c55c 0%, #adc3c526 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #b4cdda8c 0%, #b4cdda38 35%, transparent 75%), var(--lg-bg);
+  --lg-wallpaper-dark: radial-gradient(ellipse 38% 46% at 8% 90%, #687b9439 0%, #687b9417 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #6d858933 0%, #6d858914 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #7497ad42 0%, #7497ad1c 35%, transparent 75%), var(--lg-bg);
+}
+[data-lg-backdrop="sunset"] {
+  --lg-wallpaper-light: radial-gradient(ellipse 38% 46% at 8% 90%, #c6b0a573 0%, #c6b0a52e 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #bcb0c45c 0%, #bcb0c426 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #dfc4b58c 0%, #dfc4b538 35%, transparent 75%), var(--lg-bg);
+  --lg-wallpaper-dark: radial-gradient(ellipse 38% 46% at 8% 90%, #927d7139 0%, #927d7117 35%, transparent 75%), radial-gradient(ellipse 36% 44% at 88% 10%, #8b7d9333 0%, #8b7d9314 35%, transparent 75%), radial-gradient(ellipse 38% 44% at 24% 14%, #b8948042 0%, #b894801c 35%, transparent 75%), var(--lg-bg);
+}
+[data-liquid-glass][data-theme="dark"][data-lg-backdrop], [data-liquid-glass][data-theme="dark"] [data-lg-backdrop] {
+  --lg-wallpaper: var(--lg-wallpaper-dark);
+}
+[data-liquid-glass] {
+  --lg-bg: #e8e8e9;
+  --lg-text: #222244;
+  --lg-muted: #525268;
+  --lg-dim: #626276;
+  --lg-accent: #3a3a3c;
+  --lg-accent-hover: #242426;
+  --lg-on-accent: #fff;
+  --lg-success: #287852;
+  --lg-danger: #c8323a;
+  --lg-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --lg-material-ease: cubic-bezier(1, 0, .4, 1);
+}
+[data-liquid-glass][data-theme="dark"] {
+  --lg-bg: #1b1b1d;
+  --lg-text: #e1e1e1;
+  --lg-muted: #bdbdc8;
+  --lg-dim: #a5a5b5;
+  --lg-accent: #e1e1e1;
+  --lg-accent-hover: #f5f5f7;
+  --lg-on-accent: #202022;
+  --lg-success: #81d4a5;
+  --lg-danger: #ffa3a7;
+}
+:where([data-liquid-glass]).lg-app,
+:where([data-liquid-glass]) .lg-app {
+  background: var(--lg-wallpaper, var(--lg-bg));
+  color: var(--lg-text);
+  font-family: var(--lg-font);
+  font-optical-sizing: auto;
+}
+:where([data-liquid-glass]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-menu, .lg-dialog) {
+  /* Prevent nested controls from inheriting a filter sized for their parent. */
+  --lg-lens: ;
+  box-sizing: border-box;
+  color: var(--lg-text);
+  background: color-mix(in srgb, var(--lg-glass) calc(var(--lg-alpha) * 100%), transparent);
+  border: 0;
+  box-shadow: var(--lg-surface-shadow);
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  backdrop-filter: blur(var(--lg-blur)) var(--lg-lens, ) saturate(var(--lg-saturation));
+  transition: background-color 400ms var(--lg-material-ease), box-shadow 400ms var(--lg-material-ease);
+}
+:where([data-liquid-glass]) :is(.lg-surface, .lg-toolbar) { border-radius: 26px; }
+:where([data-liquid-glass]) :is(.lg-button, .lg-icon-button, .lg-field) {
+  background: var(--lg-control-selected);
+  min-height: 36px; border-radius: 999px; font: 500 12px var(--lg-font);
+}
+/* The parent filters the backdrop once; nested controls keep only tint and bevel.
+ * Repeating blur on the parent's tinted surface makes WebView2 controls grayer. */
+:where([data-liquid-glass]) :where(.lg-surface, [data-lg-surface], .lg-toolbar, .lg-menu, .lg-dialog) :is(.lg-button, .lg-icon-button, .lg-field) {
+  --lg-lens: ;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+:where([data-liquid-glass]) .lg-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 14px; cursor: pointer; }
+:where([data-liquid-glass]) .lg-icon-button { display: inline-grid; place-items: center; width: 36px; padding: 0; cursor: pointer; }
+:where([data-liquid-glass]) .lg-field { padding: 8px 14px; min-width: 0; }
+:where([data-liquid-glass]) .lg-field::placeholder { color: var(--lg-muted); }
+:where([data-liquid-glass]) :is(.lg-button, .lg-icon-button):not(:disabled):hover {
+  background: color-mix(in srgb, var(--lg-glass) calc(var(--lg-control-hover-alpha) * 100%), transparent); color: var(--lg-accent);
+}
+:where([data-liquid-glass]) :is(.lg-button, .lg-icon-button, .lg-row, .lg-field):focus-visible {
+  outline: 2px solid var(--lg-accent); outline-offset: 3px;
+}
+:where([data-liquid-glass]) :is(.lg-button, .lg-icon-button, .lg-row):disabled { opacity: .45; cursor: default; }
+:where([data-liquid-glass]) .lg-primary { background: var(--lg-accent); color: var(--lg-on-accent); }
+:where([data-liquid-glass]) .lg-primary:not(:disabled):hover { background: var(--lg-accent-hover); color: var(--lg-on-accent); }
+:where([data-liquid-glass]) .lg-danger { background: var(--lg-danger); color: #fff; }
+:where([data-liquid-glass]) .lg-danger:not(:disabled):hover { background: color-mix(in srgb, var(--lg-danger) 90%, #000); color: #fff; }
+:where([data-liquid-glass]) .lg-icon-badge {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 10px;
+  background: color-mix(in srgb, var(--lg-glass) 24%, transparent); box-shadow: var(--lg-selection-shadow);
+}
+:where([data-liquid-glass]) .lg-row {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 38px; padding: 8px 12px;
+  border: 0; border-radius: 999px; background: transparent; color: var(--lg-muted); font: 500 12px var(--lg-font); text-align: left; cursor: pointer;
+}
+:where([data-liquid-glass]) .lg-row:not(:disabled):hover { background: color-mix(in srgb, var(--lg-glass) calc(var(--lg-control-hover-alpha) * 100%), transparent); color: var(--lg-text); }
+:where([data-liquid-glass]) .lg-row:is([aria-current]:not([aria-current="false"]), [aria-pressed="true"]) {
+  background: var(--lg-control-selected); color: var(--lg-text); font-weight: 600; box-shadow: var(--lg-selection-shadow);
+}
+:where([data-liquid-glass]) .lg-row:is([aria-current]:not([aria-current="false"]), [aria-pressed="true"]) > svg { color: inherit; }
+:where([data-liquid-glass]) :is(.lg-menu, .lg-dialog) {
+  --lg-glass: var(--lg-card); --lg-alpha: .96; --lg-blur: 24px; --lg-saturation: 120%; --lg-lens: ;
+  border-radius: 24px; padding: 12px;
+  box-shadow: var(--lg-surface-shadow), 0 12px 32px #0000002e;
+}
+:where([data-liquid-glass]) .lg-toolbar { padding: 12px 18px; }
+:where([data-liquid-glass]) .lg-divider { border: 0; height: 1px; background: var(--lg-hairline); margin: 12px 0; }
+:where([data-liquid-glass]) .lg-reading {
+  background: color-mix(in srgb, var(--lg-reading) 95%, transparent);
+  border-radius: 22px; position: relative; overflow: hidden; min-width: 0; min-height: 0;
+}
+:where([data-liquid-glass]) .lg-prose { max-width: 740px; padding: 32px; margin-inline: auto; font-size: 16px; line-height: 1.7; }
+:where([data-liquid-glass]) .lg-prose :is(h1,h2,h3) { font-weight: 600; line-height: 1.25; letter-spacing: -.025em; }
+:where([data-liquid-glass]) .lg-prose h1 { font-size: 32px; }
+:where([data-liquid-glass]) .lg-prose h2 { font-size: 24px; }
+:where([data-liquid-glass]) .lg-prose h3 { font-size: 19px; }
+
+/* A clipped optical layer and a separate rim preserve the contour during motion. */
+:where([data-liquid-glass]) .lg-segmented {
+  --segment-overlap: 8px;
+  display: grid; grid-template-columns: repeat(var(--segments), minmax(0,1fr)); gap: 8px;
+  position: relative; isolation: isolate; box-sizing: border-box;
+  padding: 8px 12px 10px; min-height: 50px; border-radius: 999px; user-select: none;
+  background: transparent; border: 0; box-shadow: none;
+}
+:where([data-liquid-glass]) .lg-segment-material {
+  --lg-alpha: .12;
+  position: absolute; inset: 0; z-index: 0; border-radius: inherit;
+  overflow: clip; clip-path: inset(0 round 999px); pointer-events: none; box-shadow: none;
+}
+:where([data-liquid-glass]) .lg-segment-indicator {
+  position: absolute; z-index: 1; inset: 4px auto 6px 4px;
+  width: calc((100% - 16px) / var(--segments) + 8px);
+  border-radius: 999px; pointer-events: none;
+  background: var(--lg-control-selected); box-shadow: var(--lg-selection-shadow);
+}
+:where([data-liquid-glass]) .lg-segment-rim {
+  position: absolute; inset: 0; z-index: 3; border-radius: inherit; pointer-events: none; box-shadow: var(--lg-surface-shadow);
+}
+:where([data-liquid-glass]) .lg-segmented button {
+  position: relative; z-index: 2; min-width: 0; min-height: 32px;
+  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 10px;
+  border: 0; border-radius: 999px; color: var(--lg-text); background: transparent;
+  font: 500 12px var(--lg-font); cursor: pointer;
+}
+:where([data-liquid-glass]) .lg-segmented button[aria-pressed="true"] { font-weight: 600; }
+:where([data-liquid-glass]) .lg-segmented button[aria-pressed="true"] svg { color: inherit; }
+:where([data-liquid-glass]) .lg-segmented button:not(:disabled):not([aria-pressed="true"]):hover { color: var(--lg-accent); }
+:where([data-liquid-glass]) .lg-segmented button:focus-visible { outline: 2px solid var(--lg-accent); outline-offset: -3px; }
+:where([data-liquid-glass]) .lg-segmented button:disabled { opacity: .45; cursor: default; }
+:where([data-liquid-glass]) .lg-segmented button span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+:where([data-liquid-glass]) .lg-segmented button svg { transition: scale 200ms cubic-bezier(.5,0,0,1); }
+:where([data-liquid-glass]) .lg-segmented button:not(:disabled):not([aria-pressed="true"]):hover svg { scale: 1.15; }
+:where([data-liquid-glass]) .lg-segmented.stacked { min-height: 52px; padding: 4px 12px; }
+:where([data-liquid-glass]) .lg-segmented.stacked .lg-segment-indicator { bottom: 4px; }
+:where([data-liquid-glass]) .lg-segmented.stacked button { flex-direction: column; min-height: 44px; gap: 3px; padding: 0 2px; }
+:where([data-liquid-glass]) .lg-segmented.stacked button span { font-size: 10px; }
+
+@supports not ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  :where([data-liquid-glass]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-menu, .lg-dialog) { background: var(--lg-solid); }
+}
+:where([data-liquid-glass][data-lg-fallback="true"]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-menu, .lg-dialog) {
+  background: var(--lg-solid); backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :where([data-liquid-glass]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-menu, .lg-dialog) {
+    background: var(--lg-solid); backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  :where([data-liquid-glass]) button[aria-pressed="true"] { outline: 1px solid currentColor; outline-offset: -3px; }
+}
+@media (forced-colors: active) {
+  :where([data-liquid-glass]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-menu, .lg-dialog) {
+    background: Canvas; color: CanvasText; border: 1px solid CanvasText; box-shadow: none;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+  :where([data-liquid-glass]) .lg-segment-indicator { background: Highlight; box-shadow: none; }
+  :where([data-liquid-glass]) .lg-segment-rim { box-shadow: none; }
+  :where([data-liquid-glass]) .lg-segmented button[aria-pressed="true"] { color: HighlightText; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-liquid-glass]) :is(.lg-surface, [data-lg-surface], .lg-button, .lg-icon-button, .lg-field, .lg-toolbar, .lg-segmented button svg) { transition: none; }
+}
+@media (max-width: 620px) {
+  :where([data-liquid-glass]) .lg-prose { padding: 20px; font-size: 15px; }
+}

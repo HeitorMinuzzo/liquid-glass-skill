@@ -1,0 +1,19 @@
+/* Optional native range example, using the same optical layers. AGPL-3.0-only. */
+.glass-range { position: relative; min-width: 0; flex: 1; height: 36px; --range-position: .64; }
+.glass-range-track { position: absolute; left: 12px; right: 12px; top: 14px; height: 8px; --glass-radius: 999px; pointer-events: none; }
+.glass-range-fill { position: absolute; inset: 0 auto 0 0; z-index: 1; width: calc(100% * var(--range-position)); border-radius: inherit; background: color-mix(in srgb, var(--glass-text) 17%, transparent); }
+.glass-range-thumb { position: absolute; left: 64%; top: 50%; z-index: 3; width: 24px; height: 24px; --glass-radius: 999px; transform: translate(-50%,-50%); pointer-events: none; transition: width 140ms ease, height 140ms ease; }
+.glass-range[data-held="true"] .glass-range-thumb { width: 29px; height: 29px; }
+.glass-range > input[type="range"] { position: relative; z-index: 4; display: block; width: 100%; height: 36px; padding: 0; margin: 0; border: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: pointer; touch-action: pan-y; border-radius: 999px; }
+.glass-range > input::-webkit-slider-runnable-track { height: 8px; background: transparent; border: 0; }
+.glass-range > input::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 24px; height: 24px; margin-top: -8px; border: 0; border-radius: 50%; background: transparent; box-shadow: none; }
+.glass-range > input::-moz-range-track, .glass-range > input::-moz-range-progress { height: 8px; background: transparent; border: 0; }
+.glass-range > input::-moz-range-thumb { width: 24px; height: 24px; border: 0; border-radius: 50%; background: transparent; box-shadow: none; }
+.glass-range:has(input:disabled) { opacity: .45; }
+.glass-range > input:disabled { cursor: default; }
+@media (prefers-reduced-motion: reduce) { .glass-range-thumb { transition: none; } }
+@media (forced-colors: active) {
+  .glass-range-track { background: Canvas; border: 1px solid CanvasText; }
+  .glass-range-fill { background: Highlight; }
+  .glass-range-thumb { background: ButtonFace; border: 1px solid ButtonText; }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark"><title>Liquid Glass · Portable material example</title>
+  <link rel="stylesheet" href="../core/liquid-glass.css"><link rel="stylesheet" href="../core/glass-range.css"><link rel="stylesheet" href="example.css">
+  <script type="module" src="example.js"></script>
+</head>
+<body data-liquid-glass data-theme="light">
+  <header><p class="eyebrow">THE MATERIAL, IN FOCUS</p><h1>Liquid Glass.</h1><p class="lead">Reflected edges. A quiet center. Your components.</p></header>
+  <main>
+    <section class="settings" aria-labelledby="settings-title">
+      <h2 id="settings-title">Explore the material</h2>
+      <label for="backdrop-copy">Text behind the glass</label><textarea id="backdrop-copy" rows="6" maxlength="1200" spellcheck="false">A arquitetura
+
+O Apple Park foi feito para caminhadas e
+exploração. Os elementos de design
+incorporam a receptividade e a
+conexão com a natureza.</textarea>
+      <button id="article-example" class="text-button" type="button">Load Apple Park example</button>
+      <label for="appearance">Theme</label><select id="appearance"><option value="light">Light</option><option value="dark">Dark</option></select>
+      <label for="background">Background</label><select id="background"><option value="none">Neutral · no colors</option><option value="aurora">Aurora · colors</option><option value="ocean">Ocean · colors</option><option value="sunset">Sunset · colors</option></select>
+      <label for="text-layout">Text arrangement</label><select id="text-layout"><option value="article">Article</option><option value="poster">Poster</option></select>
+      <label for="text-size">Text scale <output id="size-value">74</output></label><input type="range" id="text-size" min="24" max="200" value="74">
+      <label for="strength">Edge strength <output id="strength-value">100%</output></label><input id="strength" type="range" min="0" max="140" step="5" value="100">
+      <label class="check"><input type="checkbox" id="lens-enabled" checked> Refraction enabled</label>
+      <p id="material-status" class="note" role="status"></p>
+    </section>
+    <section class="preview" aria-labelledby="preview-title">
+      <div class="preview-heading"><div><h2 id="preview-title">See through the surface.</h2><p>Same material. Different shapes.</p></div><label class="sample-label" for="sample">Sample<select id="sample"><option value="search">Search</option><option value="button">Action</option><option value="circle">Circle</option><option value="slider">Slider</option></select></label></div>
+      <div class="glass-scene scene" id="scene" data-glass-backdrop="none" data-layout="article">
+        <div class="scene-source" id="scene-source" aria-hidden="true"><p class="background-text"></p></div>
+        <span class="scene-label">THE BACKGROUND IS REAL CONTENT</span>
+        <div class="floating-component" id="glass-object">
+          <button id="move-glass" class="move-grip" type="button" aria-label="Move glass with arrow keys" title="Drag anywhere · Arrow keys to adjust">•••</button>
+          <section class="liquid-glass example-search" data-glass-field id="sample-search" aria-label="Glass search capsule">
+            <span class="glass-material" aria-hidden="true"></span><label class="glass-content"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" aria-label="Glass search example" placeholder="Busca" autocomplete="off"></label><span class="glass-rim" aria-hidden="true"></span>
+          </section>
+          <button class="liquid-glass example-action" id="sample-button" type="button" hidden><span class="glass-material" aria-hidden="true"></span><span class="glass-content">Save idea</span><span class="glass-rim" aria-hidden="true"></span></button>
+          <button class="liquid-glass example-circle" id="sample-circle" type="button" aria-label="Favorite example" aria-pressed="false" hidden><span class="glass-material" aria-hidden="true"></span><span class="glass-content"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1 6.2-5.6-2.9-5.6 2.9 1-6.2L1.9 9.6l6.3-.9z"/></svg></span><span class="glass-rim" aria-hidden="true"></span></button>
+          <section class="liquid-glass example-slider" id="sample-slider" hidden aria-label="Glass volume control">
+            <span class="glass-material" aria-hidden="true"></span>
+            <div class="glass-content"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg><div class="glass-range"><span class="glass-range-track liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-range-fill"></span><span class="glass-rim"></span></span><span class="glass-range-thumb liquid-glass" aria-hidden="true"><span class="glass-material"></span><span class="glass-rim"></span></span><input type="range" min="0" max="100" value="64" aria-label="Volume"></div><output aria-hidden="true">64</output></div>
+            <span class="glass-rim" aria-hidden="true"></span>
+          </section>
+        </div>
+        <span class="scene-foot">Drag the glass · adjust volume on the slider · arrows on the grip</span>
+      </div>
+      <p class="caption">0% keeps the local tint. 100% adds refraction and a mirrored edge. The foreground stays crisp.</p>
+      <p class="caption" id="action-status" role="status"></p>
+    </section>
+  </main>
+  <footer>Framework independent · Neutral and colored backgrounds · Real browser rendering</footer>
+</body>
+</html>
