@@ -2,6 +2,7 @@
 import { createGlassScene } from './edge-preview.js';
 import { renderMenuBackdrop } from './menu-backdrop.js';
 import {attachGlassRange} from '../../liquid-glass-apple/assets/core/glass-range.js';
+import {attachShowcaseNavigation} from './navigation.js';
 const root = document.body, params = new URLSearchParams(location.search);
 const requestedView = params.get('view');
 const view = requestedView === 'workspace' ? 'gallery' : ['home', 'gallery', 'playground'].includes(requestedView) ? requestedView : 'home';
@@ -10,8 +11,28 @@ const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const controllers = [];
 const ranges = [];
-let backdropFrame = 0, menuGlass;
+let backdropFrame = 0, menuGlass, pageLightKey = '';
+function updatePageLights() {
+  const width = root.clientWidth, height = root.offsetHeight, preset = root.dataset.glassBackdrop;
+  const key = `${width}:${height}:${preset}`;
+  if (key === pageLightKey) return;
+  pageLightKey = key;
+  if (preset === 'none') { root.style.removeProperty('--showcase-background'); return; }
+  // Document coordinates keep the lights in place as the page grows. Add
+  // more foci below, rather than stretching a fixed set over the whole page.
+  const radiusX = Math.round(Math.min(440, Math.max(180, width * .30)));
+  const radiusY = Math.round(Math.min(320, Math.max(200, width * .22)));
+  const spacing = width <= 700 ? 400 : 460, first = 190;
+  const positions = [14, 86, 22, 80, 16, 74], colors = ['a', 'b', 'c'];
+  const count = Math.max(1, Math.ceil((height + radiusY - first) / spacing));
+  const lights = Array.from({length:count}, (_, index) => {
+    const color = `var(--showcase-light-${colors[index % colors.length]})`;
+    return `radial-gradient(ellipse ${radiusX}px ${radiusY}px at ${positions[index % positions.length]}% ${first + index * spacing}px, ${color} 0%, color-mix(in srgb, ${color} 55%, transparent) 28%, color-mix(in srgb, ${color} 16%, transparent) 52%, transparent 80%)`;
+  });
+  root.style.setProperty('--showcase-background', `${lights.join(',')}, var(--glass-neutral)`);
+}
 function alignPageBackground() {
+  updatePageLights();
   const style = getComputedStyle(root), page = root.getBoundingClientRect();
   // These scenes sample the same page-wide lights, without restarting the
   // gradient at each component shelf. The article keeps its editable backdrop.
@@ -45,12 +66,13 @@ export function selectButton(button) {
 }
 function syncLinks() {
   const suffix = `&theme=${root.dataset.theme}&backdrop=${root.dataset.glassBackdrop}`;
+  const activeView = view === 'home' && location.hash === '#playground' ? 'playground' : view;
   $$('[data-demo-link]').forEach(link => {
     const target = link.dataset.demoLink;
     link.href = target === 'playground'
       ? view === 'home' ? '#playground' : `?view=home${suffix}${link.dataset.demoSample ? `&sample=${link.dataset.demoSample}` : ''}#playground`
       : `?view=${target}${suffix}`;
-    if (link.closest('.demo-nav') && link.dataset.demoLink === view) link.setAttribute('aria-current', 'page');
+    if (link.closest('.demo-nav') && link.dataset.demoLink === activeView) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
   const url = new URL(location.href);
@@ -206,7 +228,9 @@ if (view === 'gallery') {
 }
 window.addEventListener('pagehide', event => { if (!event.persisted) { ranges.forEach(range => range.destroy()); controllers.forEach(scene => scene.destroy()); resize.disconnect(); pageResize.disconnect(); cancelAnimationFrame(backdropFrame); window.removeEventListener('resize', schedulePageBackground); document.removeEventListener('pointerdown', dismissBackdropMenu); } });
 $$('.lg-segmented').forEach(updateIndicator);
+attachShowcaseNavigation();
+window.addEventListener('hashchange', syncLinks);
 requestAnimationFrame(() => {
-  if (view === 'home' && location.hash === '#playground') $('#playground').scrollIntoView({block:'start'});
+  if (view === 'home' && location.hash === '#playground') $('#playground').scrollIntoView({block:'start', behavior:'instant'});
   window.showcaseReady = true;
 });
